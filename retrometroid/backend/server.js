@@ -2,6 +2,7 @@
 import express, { json } from 'express';
 import { connect } from 'mongoose';
 import { config } from 'dotenv';
+import apiRouter from './routers/index.js';
 
 config(); // Load environment variables
 
@@ -13,10 +14,16 @@ connect("mongodb://localhost:27017/Workshop")
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.error('MongoDB connection error:', err));
 
-// Example route
 app.get('/', (req, res) => {
-  res.send('Hello from Express!');
-});
+    res.send("Welcome to the API. Use /api/products for the product routes.");
+  });
 
-const PORT = process.env.PORT || 5000;
+app.use("/api", apiRouter);
+
+/* // Error handling middleware for unmatched routes
+app.use((req, res) => {
+    res.status(404).send("404 Not Found");
+  }); */
+
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -1,0 +1,25 @@
+//ADD USERS
+POST http://localhost:3000/api/products/addProduct
+Content-Type: application/json
+
+{
+  "productId" : 1,
+  "name" : "GBA",
+  "customOptions" : {
+    "consoleToBuy": false,
+    "case": "black",
+    "backCase": "black",
+    "screen": "black",
+    "buttons": "black",
+    "pads": "black",
+    "gurt": "black",
+    "specialCase": "",
+    "stickers": "black",
+    "batteryInstall": true,
+    "ledInstall": true,
+    "ledTriggerInstall": "",
+    "dpadInstall": false,
+    "ampAudio": false,
+    "accessories": []
+  }
+}

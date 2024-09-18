@@ -1,10 +1,13 @@
 // backend/server.js
 import express, { json } from 'express';
 import { connect } from 'mongoose';
-import { config } from 'dotenv';
+import dotenv from 'dotenv';
 import apiRouter from './routers/index.js';
+import pkg from '@woocommerce/woocommerce-rest-api';
+const WooCommerceRestApi = pkg.default; 
 
-config(); // Load environment variables
+
+dotenv.config(); // Load environment variables
 
 const app = express();
 app.use(json()); // Middleware to parse JSON
@@ -20,10 +23,25 @@ app.get('/', (req, res) => {
 
 app.use("/api", apiRouter);
 
-/* // Error handling middleware for unmatched routes
+const api = new WooCommerceRestApi({
+  url: "https://api-retrometroid.devprod.fr/wp-json/wc/v3/",
+  consumerKey: process.env.WC_CONSUMER_KEY,
+  consumerSecret: process.env.WC_CONSUMER_SECRET,
+  version: "wc/v3"
+});
+
+api.get('products')
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+// Error handling middleware for unmatched routes
 app.use((req, res) => {
     res.status(404).send("404 Not Found");
-  }); */
+  });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

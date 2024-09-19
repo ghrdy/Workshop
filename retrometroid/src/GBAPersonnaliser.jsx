@@ -1,22 +1,80 @@
 import './GBAPersonnaliser.css';
 
+import DatabaseCoque, {dataCoque} from "./dataGBA/Side/Coque.js";
+import DatabaseDessous, {dataDessous} from "./dataGBA/Side/GBADessous.js";
+import DatabaseEcran, {dataEcran} from "./dataGBA/Side/Ecran.js";
+import DatabaseButton, {dataButton} from "./dataGBA/Side/Button.js";
+import DatatabasePad, {dataPads} from "./dataGBA/Side/PAD.js";
+import DatabaseStrap, {dataStrap} from "./dataGBA/Side/Strap.js";
+
+import { useState } from 'react';
+
 import Accordion from 'react-bootstrap/Accordion';
 import Image from 'react-bootstrap/Image';
 
 function MenuCustom() {  
     
+    const [currentImage, setCurrentImage] = useState(DatabaseCoque[0].image); // Par défaut, on affiche la première image
+    const [currentImage1, setCurrentImage1] = useState(DatabaseDessous[0].image);
+    const [currentImage2, setCurrentImage2] = useState(DatabaseEcran[0].image);
+    const [currentButton, setCurrentButton] = useState(DatabaseButton[0].image);
+    const [currentPad, setCurrentPad] = useState(DatatabasePad[0].image);
+    const [currentStrap, setCurrentStap] = useState(DatabaseStrap[0].image);
+    
+    function changeDessous(e) {
+        const filtred = DatabaseDessous.filter((item) => item.couleur === e);
+        console.log(filtred);
+        if (filtred[0] !== undefined) setCurrentImage1(filtred[0].image);
+    }
+
+    function changeEcran(e) {
+        const filtred = DatabaseEcran.filter((item) => item.couleur === e);
+        console.log(filtred);
+        if (filtred[0] !== undefined) setCurrentImage2(filtred[0].image);
+    }
+
+    function changeColor(e) {
+        console.log(e);
+        const filtred = DatabaseCoque.filter((item) => item.value === e);
+        console.log(filtred);
+        if (filtred[0] !== undefined) setCurrentImage(filtred[0].image);
+    }
+
+    function changeButton(e) {
+        const filtred = DatabaseButton.filter((item) => item.couleur === e);
+        if (filtred[0] !== undefined) setCurrentButton(filtred[0].image);
+    }
+
+    function changePads(e) {
+        const filtred = DatatabasePad.filter((item) => item.couleur === e);
+        if (filtred[0] !== undefined) setCurrentPad(filtred[0].image);
+    }
+    function changeStrap(e) {
+        const filtred = DatabaseStrap.filter((item) => item.couleur === e);
+        if (filtred[0] !== undefined) setCurrentStap(filtred[0].image);
+    }
+
     function activateButton(e) {
         if(e.id == 'bouton1'){
             document.getElementById("bouton1").style.backgroundColor = "#F1EFEF";
         }
-        
       }
 
   return (
-    <div className="position-relative top-0">
-        images console
+    <div className="menu-container">
+        <img src={currentImage} className="logo" alt="Logo Retrometroid" width={650} height={417}/>
 
-        <div id="divConfig">
+        <img src={currentImage1} className="Overlay" width={650} height={417}/>
+
+        <img src={currentImage2} className="Overlay" width={650} height={417}/>
+
+        <img src={currentButton} className="Overlay" width={650} height={417}/>
+
+        <img src={currentPad} className="Overlay" width={650} height={417}/>
+
+        <img src={currentStrap} className="Overlay" width={650} height={417}/>
+        
+        <div className="divConfig">
             <h2 className="text-center fw-bold">CONFIGURATION</h2><br/>
             <Accordion defaultActiveKey="0" > 
 
@@ -35,19 +93,15 @@ function MenuCustom() {
                         <p>COQUE <br/> Comprend avant et arrière</p>
                     </Accordion.Header>
                     <Accordion.Body>
-                        <Image id="black" title="NOIR" className="m-1" width="20" height="20" src="./public/couleurs/NOIR.png" roundedCircle />
-                        <Image title="BLANC" className="m-1" width="20" height="20" src="./public/couleurs/BLANC.png" roundedCircle />
-                        <Image title="ROSE" className="m-1" width="20" height="20" src="./public/couleurs/ROSE.png" roundedCircle />
-                        <Image title="TURQUOISE" className="m-1" width="20" height="20" src="./public/couleurs/TURQUOISE.png" roundedCircle />
-                        <Image title="JAUNE" className="m-1" width="20" height="20" src="./public/couleurs/JAUNE.png" roundedCircle />
-                        <Image title="GHOST" className="m-1" width="20" height="20" src="./public/couleurs/GHOST.png" roundedCircle />
-                        <Image title="CLEAR VIOLET" className="m-1" width="20" height="20" src="./public/couleurs/CLEAR_VIOLET.png" roundedCircle />
-                        <Image title="CLEAR ORANGE" className="m-1" width="20" height="20" src="./public/couleurs/CLEAR_ORANGE.png" roundedCircle />
-                        <Image title="CLEAR NOIR" className="m-1" width="20" height="20" src="./public/couleurs/CLEAR_NOIR.png" roundedCircle />
-                        <Image title="CLEAR BLEU" className="m-1" width="20" height="20" src="./public/couleurs/CLEAR_BLEU.png" roundedCircle />
-                        <Image title="CLEAR GLASS" className="m-1" width="20" height="20" src="./public/couleurs/CLEAR_GLASS.png" roundedCircle />
-                        <Image title="CLEAR VERT" className="m-1" width="20" height="20" src="./public/couleurs/CLEAR_VERT.png" roundedCircle />
-                        <Image title="CLEAR ROUGE" className="m-1" width="20" height="20" src="./public/couleurs/CLEAR_ROUGE.png" roundedCircle />
+                        {dataCoque.map((button, index) => (
+                            <button
+                                id="boutonCouleurs"
+                                key={index}
+                                className="color-button"
+                                style={{ backgroundColor: button.color, borderRadius: '50%', height: '25px', margin: '1px'}}
+                                onClick={() => changeColor(button.label)}
+                            ></button>
+                            ))}
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -56,20 +110,15 @@ function MenuCustom() {
                         <p>COQUE ARRIERE <br/> Uniquement si la coque arrière est différente de l&apos;avant</p>
                     </Accordion.Header>
                     <Accordion.Body>
-                        <Image id="black" title="NOIR + 11,90€" className="m-1" width="20" height="20" src="./public/couleurs/NOIR.png" roundedCircle />
-                        <Image title="BLANC + 11,90€" className="m-1" width="20" height="20" src="./public/couleurs/BLANC.png" roundedCircle />
-                        <Image title="ROSE + 11,90€" className="m-1" width="20" height="20" src="./public/couleurs/ROSE.png" roundedCircle />
-                        <Image title="TURQUOISE + 11,90€" className="m-1" width="20" height="20" src="./public/couleurs/TURQUOISE.png" roundedCircle />
-                        <Image title="JAUNE + 11,90€" className="m-1" width="20" height="20" src="./public/couleurs/JAUNE.png" roundedCircle />
-                        <Image title="GHOST + 11,90€" className="m-1" width="20" height="20" src="./public/couleurs/GHOST.png" roundedCircle />
-                        <Image title="CLEAR VIOLET + 11,90€" className="m-1" width="20" height="20" src="./public/couleurs/CLEAR_VIOLET.png" roundedCircle />
-                        <Image title="CLEAR ORANGE + 11,90€" className="m-1" width="20" height="20" src="./public/couleurs/CLEAR_ORANGE.png" roundedCircle />
-                        <Image title="CLEAR NOIR + 11,90€" className="m-1" width="20" height="20" src="./public/couleurs/CLEAR_NOIR.png" roundedCircle />
-                        <Image title="CLEAR BLEU + 11,90€" className="m-1" width="20" height="20" src="./public/couleurs/CLEAR_BLEU.png" roundedCircle />
-                        <Image title="CLEAR GLASS + 11,90€" className="m-1" width="20" height="20" src="./public/couleurs/CLEAR_GLASS.png" roundedCircle />
-                        <Image title="CLEAR VERT + 11,90€" className="m-1" width="20" height="20" src="./public/couleurs/CLEAR_VERT.png" roundedCircle />
-                        <Image title="CLEAR ROUGE + 11,90€" className="m-1" width="20" height="20" src="./public/couleurs/CLEAR_ROUGE.png" roundedCircle />
-                        <button onClick={activateButton} className='boutons' id="bouton" type='button'>Sans</button>{' '}
+                        {dataDessous.map((button, index) => (
+                            <button
+                                id="boutonCouleurs"
+                                key={index}
+                                className="color-button"
+                                style={{ backgroundColor: button.color, borderRadius: '50%', height: '25px', margin: '1px'}}
+                                onClick={() => changeDessous(button.label)}
+                            ></button>
+                        ))}
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -78,8 +127,15 @@ function MenuCustom() {
                         <p>ECRAN IPS RETROECLAIRE</p>
                     </Accordion.Header>
                     <Accordion.Body>
-                        <Image id="black" title="NOIR" className="m-1" width="20" height="20" src="./public/couleurs/NOIR.png" roundedCircle />
-                        <Image title="BLANC" className="m-1" width="20" height="20" src="./public/couleurs/BLANC.png" roundedCircle />
+                        {dataEcran.map((button, index) => (
+                            <button
+                                id="boutonCouleurs"
+                                key={index}
+                                className="color-button"
+                                style={{ backgroundColor: button.color, borderRadius: '50%', height: '25px', margin: '1px'}}
+                                onClick={() => changeEcran(button.label)}
+                            ></button>
+                        ))}
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -88,21 +144,15 @@ function MenuCustom() {
                         <p>BOUTONS</p>
                     </Accordion.Header>
                     <Accordion.Body>
-                        <Image id="black" title="NOIR" className="m-1" width="20" height="20" src="./public/couleursBoutons/NOIR.png" roundedCircle />
-                        <Image title="BLANC" className="m-1" width="20" height="20" src="./public/couleursBoutons/BLANC.png" roundedCircle />
-                        <Image title="SNES" className="m-1" width="20" height="20" src="./public/couleursBoutons/SNES.png" roundedCircle />
-                        <Image title="BLEU" className="m-1" width="20" height="20" src="./public/couleursBoutons/BLEU.png" roundedCircle />
-                        <Image title="ORANGE" className="m-1" width="20" height="20" src="./public/couleursBoutons/ORANGE.png" roundedCircle />
-                        <Image title="JAUNE" className="m-1" width="20" height="20" src="./public/couleursBoutons/JAUNE.png" roundedCircle />
-                        <Image title="VIOLET" className="m-1" width="20" height="20" src="./public/couleursBoutons/VIOLET.png" roundedCircle />
-                        <Image title="ROSE" className="m-1" width="20" height="20" src="./public/couleursBoutons/ROSE.png" roundedCircle />
-                        <Image title="ROUGE" className="m-1" width="20" height="20" src="./public/couleursBoutons/ROUGE.png" roundedCircle />
-                        <Image title="LEMON" className="m-1" width="20" height="20" src="./public/couleursBoutons/LEMON.png" roundedCircle />
-                        <Image title="CLEAR NOIR" className="m-1" width="20" height="20" src="./public/couleursBoutons/CLEAR_NOIR.png" roundedCircle />
-                        <Image title="CLEAR BLEU" className="m-1" width="20" height="20" src="./public/couleursBoutons/CLEAR_BLEU.png" roundedCircle />
-                        <Image title="CLEAR GLASS" className="m-1" width="20" height="20" src="./public/couleursBoutons/CLEAR_GLASS.png" roundedCircle />
-                        <Image title="CLEAR VERT" className="m-1" width="20" height="20" src="./public/couleursBoutons/CLEAR_VERT.png" roundedCircle />
-                        <Image title="CLEAR ROSE" className="m-1" width="20" height="20" src="./public/couleursBoutons/CLEAR_ROSE.png" roundedCircle />
+                        {dataButton.map((button, index) => (
+                            <button
+                                id="boutonCouleurs"
+                                key={index}
+                                className="color-button"
+                                style={{ backgroundColor: button.color, borderRadius: '50%', height: '25px', margin: '1px'}}
+                                onClick={() => changeButton(button.label)}
+                            ></button>
+                        ))}
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -111,15 +161,15 @@ function MenuCustom() {
                         <p>PADS</p>
                     </Accordion.Header>
                     <Accordion.Body>
-                        <Image id="black" title="NOIR" className="m-1" width="20" height="20" src="./public/couleursPads/NOIR.png" roundedCircle />
-                        <Image title="BLEU CLAIR" className="m-1" width="20" height="20" src="./public/couleursPads/BLEU_CLAIR.png" roundedCircle />
-                        <Image title="BLEU" className="m-1" width="20" height="20" src="./public/couleursPads/BLEU.png" roundedCircle />
-                        <Image title="VERT" className="m-1" width="20" height="20" src="./public/couleursPads/VERT.png" roundedCircle />
-                        <Image title="ORANGE" className="m-1" width="20" height="20" src="./public/couleursPads/ORANGE.png" roundedCircle />
-                        <Image title="ROUGE" className="m-1" width="20" height="20" src="./public/couleursPads/ROUGE.png" roundedCircle />
-                        <Image title="ROSE" className="m-1" width="20" height="20" src="./public/couleursPads/ROSE.png" roundedCircle />
-                        <Image title="BLANC" className="m-1" width="20" height="20" src="./public/couleursPads/BLANC.png" roundedCircle />
-                        <Image title="JAUNE" className="m-1" width="20" height="20" src="./public/couleursPads/JAUNE.png" roundedCircle />
+                        {dataPads.map((button, index) => (
+                            <button
+                                id="boutonCouleurs"
+                                key={index}
+                                className="color-button"
+                                style={{ backgroundColor: button.color, borderRadius: '50%', height: '25px', margin: '1px'}}
+                                onClick={() => changePads(button.label)}
+                            ></button>
+                        ))}
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -128,15 +178,15 @@ function MenuCustom() {
                         <p>LANIERE</p>
                     </Accordion.Header>
                     <Accordion.Body>
-                        <Image id="black" title="NOIR" className="m-1" width="20" height="20" src="./public/couleursLaniere/NOIR.png" roundedCircle />
-                        <Image title="ROSE" className="m-1" width="20" height="20" src="./public/couleursLaniere/ROSE.png" roundedCircle />
-                        <Image title="BLANC" className="m-1" width="20" height="20" src="./public/couleursLaniere/BLANC.png" roundedCircle />
-                        <Image title="JAUNE" className="m-1" width="20" height="20" src="./public/couleursLaniere/JAUNE.png" roundedCircle />
-                        <Image title="VIOLET" className="m-1" width="20" height="20" src="./public/couleursLaniere/VIOLET.png" roundedCircle />
-                        <Image title="ORANGE" className="m-1" width="20" height="20" src="./public/couleursLaniere/ORANGE.png" roundedCircle />
-                        <Image title="ROUGE" className="m-1" width="20" height="20" src="./public/couleursLaniere/ROUGE.png" roundedCircle />
-                        <Image title="BLEU" className="m-1" width="20" height="20" src="./public/couleursLaniere/BLEU.png" roundedCircle />
-                        <Image title="VERT" className="m-1" width="20" height="20" src="./public/couleursLaniere/VERT.png" roundedCircle />
+                        {dataStrap.map((button, index) => (
+                            <button
+                                id="boutonCouleurs"
+                                key={index}
+                                className="color-button"
+                                style={{ backgroundColor: button.color, borderRadius: '50%', height: '25px', margin: '1px'}}
+                                onClick={() => changeStrap(button.label)}
+                            ></button>
+                        ))}
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -229,8 +279,8 @@ function MenuCustom() {
                 </Accordion.Item>
             </Accordion>
         </div>
-<br/><br/>
-        <div id="divPaiement">
+
+        <div className="divPaiement">
             <h2 id="paiement">€</h2>
             <p id="paiement" className="fw-light">Prix total</p>
 

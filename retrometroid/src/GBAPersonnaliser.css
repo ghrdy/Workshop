@@ -23,13 +23,19 @@ p{
     font-size: 15px;
 }
 
-#bouton{
+.boutons{
+    background-color: white;
+    color: black;
+    font-size: 15px;
+    border-radius: 30px;
     border: 1px solid rgb(205, 203, 203);
-    margin: 2px;
+    margin-bottom: 2px;
+    height: 43px;
 }
 
-#bouton:hover{
+.boutons:hover{
     background-color: rgb(241, 239, 239);
+    border: 1px solid rgb(205, 203, 203);
 }
 
 img:hover{

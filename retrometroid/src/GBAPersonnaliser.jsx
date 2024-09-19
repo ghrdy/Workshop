@@ -1,10 +1,17 @@
 import './GBAPersonnaliser.css';
 
 import Accordion from 'react-bootstrap/Accordion';
-import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 
-function MenuCustom() {   
+function MenuCustom() {  
+    
+    function activateButton(e) {
+        if(e.id == 'bouton1'){
+            document.getElementById("bouton1").style.backgroundColor = "#F1EFEF";
+        }
+        
+      }
+
   return (
     <div className="position-relative top-0">
         images console
@@ -18,8 +25,8 @@ function MenuCustom() {
                         <p>BASE CONSOLE <br/> Création à partir d&apos;une console que vous fournissez</p>
                     </Accordion.Header>
                     <Accordion.Body>
-                        <Button id="bouton" variant="m-1 rounded-pill">Je fournis la console</Button>{' '}
-                        <Button id="bouton" variant="m-1 rounded-pill">Je n&apos;ai pas de console à fournir (+40€)</Button>{' '}                 
+                        <button onClick={activateButton} className='boutons' id="bouton1" type='button'>Je fournis la console</button>{' '}
+                        <button onClick={activateButton} className='boutons' id="bouton2" type='button'>Je n&apos;ai pas de console à fournir (+40€)</button>{' '}                 
                     </Accordion.Body>
                 </Accordion.Item>                
 
@@ -62,7 +69,7 @@ function MenuCustom() {
                         <Image title="CLEAR GLASS + 11,90€" className="m-1" width="20" height="20" src="./public/couleurs/CLEAR_GLASS.png" roundedCircle />
                         <Image title="CLEAR VERT + 11,90€" className="m-1" width="20" height="20" src="./public/couleurs/CLEAR_VERT.png" roundedCircle />
                         <Image title="CLEAR ROUGE + 11,90€" className="m-1" width="20" height="20" src="./public/couleurs/CLEAR_ROUGE.png" roundedCircle />
-                        <Button id="bouton" variant="m-1 rounded-pill">Sans</Button>{' '}
+                        <button onClick={activateButton} className='boutons' id="bouton" type='button'>Sans</button>{' '}
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -138,9 +145,9 @@ function MenuCustom() {
                         <p>COQUE SPECIAL EDITION</p>
                     </Accordion.Header>
                     <Accordion.Body>
-                        <Button id="bouton" variant="m-1 rounded-pill">SNES Edition (+ 16,50€)</Button>{' '}
-                        <Button id="bouton" variant="m-1 rounded-pill">Famicom Edition (+ 16,50€)</Button>{' '}
-                        <Button id="bouton" variant="m-1 rounded-pill">Sans</Button>{' '}
+                        <button onClick={activateButton} className='boutons' id="bouton" type='button'>SNES Edition (+ 16,50€)</button>{' '}
+                        <button onClick={activateButton} className='boutons' id="bouton" type='button'>Famicom Edition (+ 16,50€)</button>{' '}
+                        <button onClick={activateButton} className='boutons' id="bouton" type='button'>Sans</button>{' '}
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -160,8 +167,8 @@ function MenuCustom() {
                         <p>INSTALLATION BATTERIE <br/> Pose d&apos;une batterie rechargeable - 1800 mAh</p>
                     </Accordion.Header>
                     <Accordion.Body>
-                        <Button id="bouton" variant="m-1 rounded-pill">Batterie + Câble USB-C (+ 40€)</Button>{' '}
-                        <Button id="bouton" variant="m-1 rounded-pill">Sans</Button>{' '}
+                        <button onClick={activateButton} className='boutons' id="bouton" type='button'>Batterie + Câble USB-C (+ 40€)</button>{' '}
+                        <button onClick={activateButton} className='boutons' id="bouton" type='button'>Sans</button>{' '}
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -170,8 +177,8 @@ function MenuCustom() {
                         <p>INSTALLATION LED RGB <br/> Nécessite des boutons en Clear ou coque en Clear</p>
                     </Accordion.Header>
                     <Accordion.Body>
-                        <Button id="bouton" variant="m-1 rounded-pill">Led RGB (+ 50€)</Button>{' '}
-                        <Button id="bouton" variant="m-1 rounded-pill">Sans</Button>{' '}
+                        <button onClick={activateButton} className='boutons' id="bouton" type='button'>Led RGB (+ 50€)</button>{' '}
+                        <button onClick={activateButton} className='boutons' id="bouton" type='button'>Sans</button>{' '}
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -186,7 +193,7 @@ function MenuCustom() {
                         <Image title="TRIGGER VIOLET + 18,00€" className="m-1" width="20" height="20" src="./public/couleursTrigger/TRIGGER_VIOLET.png" roundedCircle />
                         <Image title="TRIGGER ROSE + 18,00€" className="m-1" width="20" height="20" src="./public/couleursTrigger/TRIGGER_ROSE.png" roundedCircle />
                         <Image title="TRIGGER ORANGE + 18,00€" className="m-1" width="20" height="20" src="./public/couleursTrigger/TRIGGER_ORANGE.png" roundedCircle />
-                        <Button id="bouton" variant="m-1 rounded-pill">Sans</Button>{' '}
+                        <button onClick={activateButton} className='boutons' id="bouton" type='button'>Sans</button>{' '}
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -195,8 +202,8 @@ function MenuCustom() {
                         <p>INSTALLATION D-PAD TACTILE <br/> Installation de boutons tactiles identiques à ceux de la GBA-SP</p>
                     </Accordion.Header>
                     <Accordion.Body>
-                        <Button id="bouton" variant="m-1 rounded-pill">D-Pad GBA-SP (+ 25€)</Button>{' '}
-                        <Button id="bouton" variant="m-1 rounded-pill">Sans</Button>{' '}
+                        <button onClick={activateButton} className='boutons' id="bouton" type='button'>D-Pad GBA-SP (+ 25€)</button>{' '}
+                        <button onClick={activateButton} className='boutons' id="bouton" type='button'>Sans</button>{' '}
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -205,8 +212,8 @@ function MenuCustom() {
                         <p>INSTALLATION AMP AUDIO <br/> Amplifie le son à 200%</p>
                     </Accordion.Header>
                     <Accordion.Body>
-                        <Button id="bouton" variant="m-1 rounded-pill">Audio Amp (+ 25€)</Button>{' '}
-                        <Button id="bouton" variant="m-1 rounded-pill">Sans</Button>{' '}
+                        <button onClick={activateButton} className='boutons' id="bouton" type='button'>Audio Amp (+ 25€)</button>{' '}
+                        <button onClick={activateButton} className='boutons' id="bouton" type='button'>Sans</button>{' '}
                     </Accordion.Body>
                 </Accordion.Item>
 
@@ -215,22 +222,22 @@ function MenuCustom() {
                         <p>ACCESSOIRES</p>
                     </Accordion.Header>
                     <Accordion.Body>
-                        <Button id="bouton" variant="m-1 rounded-pill">Saccoche Retrometroid (+ 12,90€)</Button>{' '}<br/>
-                        <Button id="bouton" variant="m-1 rounded-pill">Verre trempé (+ 4,90€)</Button>{' '}<br/>
-                        <Button id="bouton" variant="m-1 rounded-pill">Coque silicone (+ 6,90€)</Button>{' '}
+                        <button onClick={activateButton} className='boutons' id="bouton" type='button'>Saccoche Retrometroid (+ 12,90€)</button>{' '}<br/>
+                        <button onClick={activateButton} className='boutons' id="bouton" type='button'>Verre trempé (+ 4,90€)</button>{' '}<br/>
+                        <button onClick={activateButton} className='boutons' id="bouton" type='button'>Coque silicone (+ 6,90€)</button>{' '}
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
         </div>
 <br/><br/>
         <div id="divPaiement">
-            <h2 id="paiement">...€</h2>
+            <h2 id="paiement">€</h2>
             <p id="paiement" className="fw-light">Prix total</p>
 
-            <p id="paiement">Accompte versé (30%) : ...€</p>
+            <p id="paiement">Accompte versé (30%) : €</p>
             <p id="paiement">Livraison dans 35-40 jours</p>
 <br/>
-            <Button id="boutonPaiement" variant="m-1 rounded-pill">Ajouter au panier</Button>{' '}
+            <button className='boutons' id="boutonPaiement" type='submit'>Ajouter au panier</button>{' '}
         </div>
     </div>
   );

@@ -224,13 +224,13 @@ function MenuCustom() {
         </div>
 <br/><br/>
         <div id="divPaiement">
-            <h2>...€</h2>
-            <p>Prix total</p>
+            <h2 id="paiement">...€</h2>
+            <p id="paiement" className="fw-light">Prix total</p>
 
-            <p>Accompte versé (30%) : ...€</p>
-            <p>Livraison dans 35-40 jours</p>
-
-            <Button id="bouton" variant="m-1 rounded-pill">Ajouter au panier</Button>{' '}
+            <p id="paiement">Accompte versé (30%) : ...€</p>
+            <p id="paiement">Livraison dans 35-40 jours</p>
+<br/>
+            <Button id="boutonPaiement" variant="m-1 rounded-pill">Ajouter au panier</Button>{' '}
         </div>
     </div>
   );

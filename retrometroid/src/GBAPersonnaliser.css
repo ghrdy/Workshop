@@ -46,4 +46,22 @@ img:hover{
     position: relative;
     left: 1000px;
     box-shadow: 5px 5px 10px rgb(235, 233, 233);
+    border: 1px solid rgb(235, 233, 233);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+#paiement{
+    margin-left: 20px;
+}
+
+#boutonPaiement{
+    border: 1px solid rgb(205, 203, 203);
+    background-color: rgb(241, 239, 239);
+    margin-left: 120px;
+}
+
+#boutonPaiement:hover{
+    background-color: rgb(102, 101, 101);
+    color: white;
 }

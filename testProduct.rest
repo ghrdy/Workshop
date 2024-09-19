@@ -20,6 +20,6 @@ Content-Type: application/json
     "ledTriggerInstall": "",
     "dpadInstall": false,
     "ampAudio": false,
-    "accessories": []
+    "accessories": ["RetroMetroidBag","TemperedGlass"]
   }
 }

@@ -1,0 +1,201 @@
+/* Styles pour la barre de navigation */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Inclure les bordures et le padding dans la largeur */
+  background-color: white;
+}
+/* Styles de base */
+.navbar {
+  display: flex;
+  position: static;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 10px;
+}
+
+.logo {
+  color: white;
+}
+
+.menu {
+  display: flex;
+  gap: 15px;
+  background-color: white;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+}
+
+.user-cart {
+  display: flex;
+  gap: 15px;
+}
+
+.user-icon,
+.cart-icon {
+  color: white;
+  font-size: 20px;
+}
+
+.menu-button {
+  display: block;
+  background-color: blue;
+  border: none;
+  font-size: 30px;
+  color: black;
+}
+
+/* Responsive: petit écran */
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #ffffff;
+    width: 200px;
+    padding: 10px;
+  }
+
+  .menu.open {
+    display: flex;
+  }
+
+  .menu-button {
+    display: block; /* Le bouton n'apparaît que pour les écrans < 768px */
+    display: block;
+    background-color: blue;
+    border: none;
+    font-size: 30px;
+    color: black;
+  }
+
+  .user-cart {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+/* Logo section */
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.logo .subtitle {
+  font-size: 12px;
+  font-style: italic;
+  color: red;
+  display: block;
+}
+
+/* Menu */
+.menu {
+  display: flex;
+  gap: 20px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.menu a:hover {
+  color: red;
+}
+
+/* User and Cart section */
+.user-cart {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-icon {
+  font-size: 20px;
+}
+
+.cart-icon {
+  position: relative;
+  font-size: 20px;
+}
+
+.cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: gray;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+/* -------- Responsive CSS -------- */
+
+/* Pour les écrans de tablette (<= 768px) */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .menu a {
+    font-size: 14px;
+  }
+}
+
+/* Pour les écrans de mobile (<= 480px) */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 10px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .menu {
+    display: none; /* Cacher le menu sur petits écrans */
+  }
+
+  /* Bouton pour afficher le menu */
+  .menu-toggle {
+    display: block;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .menu.show {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .user-cart {
+    margin-top: 10px;
+  }
+}
+.ecran {
+  width: 100vw;
+  height: auto;
+  background-color: red;
+}

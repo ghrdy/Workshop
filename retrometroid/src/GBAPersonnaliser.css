@@ -3,6 +3,8 @@
   top: 10px;
   left: 70%;
   display: flex;
+  padding: 30px;
+  margin: -40px;
   justify-content: space-between;
   transform: translateX(-50%);
 }
@@ -10,45 +12,48 @@
 .logo {
   margin-right: 20px;
 }
-
 .accordion {
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.accordion-body {
-  height: 50px;
-}
-
-.accordion-item {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
+  width: 500px; /* Set to your preferred width */
+  height: 600px; /* Set a fixed height for the accordion */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  border: 1px solid #ccc; /* Optional: just for visual reference */
+  padding: 50px;
 }
 
 .accordion-header {
-  background-color: #f1f1f1;
-  padding: 10px;
-  cursor: pointer;
   font-weight: bold;
-  font-size: 16px;
+  padding: 10px 0;
 }
 
 .accordion-body {
-  padding: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  padding-left: 10px;
+  color: black;
+  border: 1px solid black;
+}
+
+.custom-button {
+  margin: 5px 0;
+  padding: 8px;
+  position: relative;
+  background-color: white;
+}
+#button {
+  background-color: grey;
+}
+.color-button {
+  width: 400px;
+  height: 400px;
+  margin: 5px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .custom-button {
   background-color: #fff;
-  border: 1px solid #000;
   border-radius: 50px;
   padding: 5px 15px;
   cursor: pointer;
-  color: Black;
   transition: background-color 0.3s ease;
 }
 
@@ -91,12 +96,7 @@
   z-index: 2; /* This image will be on top of the logo */
   opacity: 1; /* Optional: Set transparency for the overlay */
 }
-.Yellow {
-  background-color: yellow;
-}
-.btn2 {
-  background-color: rgb(0, 0, 255);
-}
+
 .color-container {
   display: inline-block;
   position: relative;
@@ -123,4 +123,7 @@
 
 .hidden {
   display: none;
+}
+.divPaiement {
+  padding: 70px;
 }

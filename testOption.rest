@@ -1,0 +1,11 @@
+// TEST OPTION
+POST http://localhost:3000/api/options/addOption
+Content-Type: application/json
+
+{
+  "refersto" : "case",
+  "name" : "purple",
+  "price" : 1,
+  "color" : "#2929292",
+  "pictureUrl" : "ddd"
+}

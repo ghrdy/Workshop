@@ -104,9 +104,20 @@ router.post("/addProduct", async (req, res) => {
           finalPrice += pricingConfigGBA.options[option].price; // Ajoute le prix si true
         } else if (typeof value === 'string' && pricingConfigGBA.options[option][value]) {
           finalPrice += pricingConfigGBA.options[option][value].price; // Ajoute le prix basé sur la valeur de l'option
-        }
+        } 
       }
     }
+
+    // Handle accessories (add price for each accessory if it exists in pricingConfigGBA)
+  if (pricingConfigGBA.accessories && pricingConfigGBA.accessories.length > 0) {
+    for (const accessory of pricingConfigGBA.accessories) {
+      if (pricingConfigGBA.accessories[accessory]) {
+        finalPrice += pricingConfigGBA.accessories[accessory].price;
+        console.log("changement de prix",finalPrice)
+      }
+    }
+  }
+    
 
     // Envoi du produit simple à WooCommerce
     const product = { name, customOptions: options, finalPrice };

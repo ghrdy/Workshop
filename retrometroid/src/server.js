@@ -2,6 +2,7 @@
 import express, { json } from "express";
 import apiRouter from "./routers/index.js";
 import { connect } from "mongoose";
+import path from "path";
 import SwaggerUI from "swagger-ui";
 import "swagger-ui/dist/swagger-ui.css";
 

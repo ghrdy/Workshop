@@ -19,70 +19,82 @@ const sendProductToWooCommerce = async (product) => {
   try {
     // Crée un tableau d'attributs sans inclure les attributs vides ou indéfinis
     const attributes = [
-      { name: "Case", options: [product.customOptions.case], visible: true },
+      { name: "Case", options: product.customOptions.case, visible: true },
       {
         name: "Back Case",
-        options: [product.customOptions.backCase],
+        options: product.customOptions.backCase,
         visible: true,
       },
-      {
-        name: "Screen",
-        options: [product.customOptions.screen],
-        visible: true,
-      },
+      { name: "Screen", options: product.customOptions.screen, visible: true },
       {
         name: "Buttons",
-        options: [product.customOptions.buttons],
+        options: product.customOptions.buttons,
         visible: true,
       },
-      { name: "Pads", options: [product.customOptions.pads], visible: true },
-      { name: "Gurt", options: [product.customOptions.gurt], visible: true },
+      { name: "Pads", options: product.customOptions.pads, visible: true },
+      { name: "Gurt", options: product.customOptions.gurt, visible: true },
       {
         name: "Stickers",
-        options: [product.customOptions.stickers],
+        options: product.customOptions.stickers,
         visible: true,
       },
       {
         name: "Battery Install",
-        options: [product.customOptions.batteryInstall.toString()],
+        options: product.customOptions.batteryInstall
+          ? [product.customOptions.batteryInstall.toString()]
+          : [],
         visible: true,
       },
       {
         name: "Special Case",
-        options: [product.customOptions.specialCase.toString()],
+        options: product.customOptions.specialCase
+          ? [product.customOptions.specialCase.toString()]
+          : [],
         visible: true,
       },
       {
         name: "LED Install",
-        options: [product.customOptions.ledInstall.toString()],
+        options: product.customOptions.ledInstall
+          ? [product.customOptions.ledInstall.toString()]
+          : [],
         visible: true,
       },
       {
         name: "LED Trigger Install",
-        options: [product.customOptions.ledTriggerInstall.toString()],
+        options: product.customOptions.ledTriggerInstall
+          ? [product.customOptions.ledTriggerInstall.toString()]
+          : [],
         visible: true,
       },
       {
         name: "DPAD Install",
-        options: [product.customOptions.dpadInstall.toString()],
+        options: product.customOptions.dpadInstall
+          ? [product.customOptions.dpadInstall.toString()]
+          : [],
         visible: true,
       },
       {
         name: "Amp Audio",
-        options: [product.customOptions.ampAudio.toString()],
+        options: product.customOptions.ampAudio
+          ? [product.customOptions.ampAudio.toString()]
+          : [],
         visible: true,
       },
       {
         name: "Accessories",
-        options: [product.customOptions.accessories.toString()],
+        options: Array.isArray(product.customOptions.accessories)
+          ? product.customOptions.accessories
+              .filter((item) => item !== "")
+              .map((item) => item.toString())
+          : [],
         visible: true,
       },
     ];
 
-    // Filtrer pour ne garder que les attributs non vides
+    // Filtrer pour ne garder que les attributs non vides ou non indéfinis
     const filteredAttributes = attributes.filter(
       (attr) =>
-        attr.options && attr.options[0] !== "" && attr.options[0] !== "false" // Filtrer les options vides ou "false"
+        attr.options && attr.options.length > 0 && attr.options[0] !== "false"
     );
 
     // Créer le produit simple sur WooCommerce
@@ -110,6 +122,7 @@ const sendProductToWooCommerce = async (product) => {
     return addToCartUrl; // Retourner l'URL pour redirection
   } catch (error) {
     console.error("Erreur lors de l'envoi du produit à WooCommerce:", error);
+    throw error;
   }
 };
 
@@ -259,81 +272,73 @@ router.post("/addProduct", async (req, res) => {
         if (value === undefined || value === "") {
           if (optionConfig.default) {
             value = optionConfig.default.name;
+            finalPrice += optionConfig.default.price || 0;
             console.log(
-              `Aucune valeur fournie pour ${option}. Utilisation de la valeur par défaut: ${value}`
+              "pas de valeur: prix par défaut",
+              accessory,
+              finalPrice
             );
+            validAttributes[option] = [value];
           } else {
-            invalidAttributes.push({
-              option,
-              value: "Aucune valeur et pas de valeur par défaut",
-            });
-            continue;
+            continue; // Ignorer cette option
           }
         }
 
         if (typeof value === "boolean" && value === true) {
-          finalPrice += optionConfig.price || 0; // Ajoute le prix si la valeur est "true"
-          console.log(
-            `Ajout du prix pour la variation ${option}: ${value} - ${optionConfig.price}`,
-            finalPrice
-          );
+          finalPrice += optionConfig.price || 0;
+          console.log("option ajoutée:", option, finalPrice);
         } else if (typeof value === "string") {
           if (Array.isArray(optionConfig.variations)) {
-            // Cherche la variation avec le nom correspondant
             const variation = optionConfig.variations.find(
               (v) => v.name === value
             );
             if (variation) {
               finalPrice += variation.price;
-              validAttributes[option] = [value];
               console.log(
-                `Ajout du prix pour la variation ${option}: ${value} - ${variation.price}`,
+                "variation ajoutée:",
+                option,
+                variation.name,
                 finalPrice
               );
+              validAttributes[option] = [value];
             } else {
-              // Marquer comme invalide si la variation n'existe pas
               invalidAttributes.push({ option, value });
             }
           } else if (optionConfig[value]) {
             finalPrice += optionConfig[value].price;
             validAttributes[option] = [value];
-            console.log(
-              `Ajout du prix pour ${option} avec valeur ${value}:`,
-              finalPrice
-            );
           } else {
-            // Marquer comme invalide si l'option n'existe pas
-            invalidAttributes.push({ option, value });
-          }
-        } else if (Array.isArray(value)) {
-          // Gestion des accessoires
-          if (option === "accessories") {
-            // Filtrer les accessoires vides
-            const filteredAccessories = value.filter(
-              (accessory) => accessory !== ""
-            );
-            if (filteredAccessories.length > 0) {
-              for (const accessory of filteredAccessories) {
-                if (pricingConfigGBA.accessories[accessory]) {
-                  finalPrice += pricingConfigGBA.accessories[accessory].price;
-                  console.log(
-                    "Ajout du prix de l'accessoire:",
-                    accessory,
-                    finalPrice
-                  );
-                } else {
-                  // Marquer comme invalide si l'accessoire n'existe pas
-                  invalidAttributes.push({ accessory });
-                }
-              }
-            }
-          } else {
-            // Marquer comme invalide si l'option n'est pas reconnue
             invalidAttributes.push({ option, value });
           }
         }
+      } else if (option === "accessories" && Array.isArray(value)) {
+        // Gestion spécifique des accessoires (tableaux)
+        const filteredAccessories = value.filter(
+          (accessory) => accessory !== ""
+        ); // Filtrer les accessoires vides
+
+        if (filteredAccessories.length > 0) {
+          for (const accessory of filteredAccessories) {
+            if (pricingConfigGBA.accessories[accessory]) {
+              finalPrice += pricingConfigGBA.accessories[accessory].price;
+              console.log("accessoire ajouté:", value, finalPrice);
+              if (!validAttributes[option]) {
+                validAttributes[option] = [];
+              }
+              validAttributes[option].push(accessory);
+            } else {
+              invalidAttributes.push({
+                option: "accessories",
+                value: accessory,
+              });
+            }
+          }
+        } else {
+          // Si le tableau est vide, ne rien faire et ne pas modifier le prix
+          console.log("Aucun accessoire fourni, prix inchangé.");
+          validAttributes[option] = []; // Accepter un tableau vide sans modification
+        }
       } else {
-        // Marquer comme invalide si l'option n'existe pas
         invalidAttributes.push({ option, value });
       }
     }
@@ -349,7 +354,7 @@ router.post("/addProduct", async (req, res) => {
     // Envoi du produit simple à WooCommerce avec les attributs valides uniquement
     const product = { name, customOptions: validAttributes, finalPrice };
     // Ajoute ici la logique pour envoyer le produit à WooCommerce
-
+    const addToCartUrl = await sendProductToWooCommerce(product);
     res.status(200).json({ product });
   } catch (error) {
     console.error("Erreur lors de l'ajout du produit:", error);

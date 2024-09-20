@@ -15,12 +15,12 @@ Content-Type: application/json
     "gurt": "black",
     "specialCase": "",
     "stickers": "",
-    "batteryInstall": true,
+    "batteryInstall": false,
     "ledInstall": false,
     "ledTriggerInstall": "",
     "dpadInstall": false,
     "ampAudio": false,
-    "accessories": [""]
+    "accessories": ["RetroMetroidBag"]
   }
 }
 

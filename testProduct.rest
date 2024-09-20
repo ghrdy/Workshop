@@ -6,7 +6,7 @@ Content-Type: application/json
   "productId" : 1,
   "name" : "GBA-Tim",
   "customOptions" : {
-    "consoleToBuy": false,
+    "consoleToBuy": true,
     "case": "black",
     "backCase": "black",
     "screen": "black",
@@ -14,12 +14,29 @@ Content-Type: application/json
     "pads": "black",
     "gurt": "black",
     "specialCase": "",
-    "stickers": "black",
-    "batteryInstall": true,
-    "ledInstall": true,
+    "stickers": "",
+    "batteryInstall": false,
+    "ledInstall": false,
     "ledTriggerInstall": "",
     "dpadInstall": false,
     "ampAudio": false,
-    "accessories": ["RetroMetroidBag","TemperedGlass"]
+    "accessories": ["RetroMetroidBag"]
   }
 }
+
+
+// accessories : ok
+// ampAudio : ok
+// dpadInstall : ok
+// ledTriggerIntsall : ok
+// ledInstall : ok
+// batteryInstall : ok
+// stickers: ok
+// specialCase: ok
+// gurt : no price
+// pads : no price
+// buttons : no price
+// screen : no price
+// backCase : ok
+// case : no price
+// consoleToBuy : ok

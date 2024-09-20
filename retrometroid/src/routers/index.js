@@ -1,6 +1,7 @@
 import { Router } from "express";
 import gbaRouter from "./gbaRouter.js"; // Import the GBA router (for Products)
 import optionsRouter from "./optionsRouter.js";
+
 // You can add other routers here, like userRouter, orderRouter, etc.
 
 const router = Router();

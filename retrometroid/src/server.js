@@ -2,11 +2,11 @@
 import express, { json } from "express";
 import apiRouter from "./routers/index.js";
 import { connect } from "mongoose";
-import path from "path";
-import SwaggerUI from "swagger-ui";
-import "swagger-ui/dist/swagger-ui.css";
+//import path from "path";
+//import SwaggerUI from "swagger-ui";
+//import "swagger-ui/dist/swagger-ui.css";
 
-const spec = require("./swagger-config.yaml");
+/* const spec = require("./swagger-config.yaml");
 
 const ui = SwaggerUI({
   spec,
@@ -17,7 +17,7 @@ ui.initOAuth({
   appName: "Swagger UI Webpack Demo",
   // See https://demo.identityserver.io/ for configuration details.
   clientId: "implicit",
-});
+}); */
 // Connect to MongoDB
 connect("mongodb://localhost:27017/Workshop")
   .then(() => console.log("MongoDB connected"))

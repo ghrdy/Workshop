@@ -22,7 +22,7 @@ function GBAPersonnaliser() {
   // Prix initial de base et objet pour stocker les prix des items sélectionnés
   const [totalPrice, setTotalPrice] = useState(149);
   const [selectedItems, setSelectedItems] = useState({
-    consoleToBuy: 0,
+    consoleToBuy: false,
     case: 0,
     backCase: 0,
     screen: 0,
@@ -31,13 +31,13 @@ function GBAPersonnaliser() {
     gurt: 0,
     specialCase: 0,
     stickers: 0,
-    batteryInstall: 0,
-    ledInstall: 0,
-    ledTriggerInstall: 0,
-    dpadInstall: 0,
-    ampAudio: 0,
+    batteryInstall: false,
+    ledInstall: false,
+    ledTriggerInstall: false,
+    dpadInstall: false,
+    ampAudio: false,
   });
-
+  console.log([selectedItems]);
   // Fonction pour mettre à jour le prix total en fonction des items sélectionnés
   function updatePrice(category, price) {
     setSelectedItems((prevItems) => {
@@ -165,6 +165,12 @@ function GBAPersonnaliser() {
       }
       updatePrice("Verre", price);
     }
+    {
+      if (option === "Coque") {
+        price = 6.9;
+      }
+      updatePrice("Coque", price);
+    }
   }
 
   // Rendu de la page
@@ -249,7 +255,16 @@ function GBAPersonnaliser() {
               <button id="button" onClick={() => selectConsole("Fourni ")}>
                 Je fournis la console
               </button>
-              <button id="button" onClick={() => selectConsole("Fourni Pas")}>
+              <button
+                id="button"
+                onClick={() => {
+                  selectConsole("Fourni Pas"); // Appelle la fonction pour toute autre logique
+                  setSelectedItems((prevState) => ({
+                    ...prevState,
+                    consoleToBuy: true, // Par exemple, ici, 40€ si la console n'est pas fournie
+                  }));
+                }}
+              >
                 Je n ai pas de console à fournir (+40€)
               </button>
             </div>
@@ -266,7 +281,13 @@ function GBAPersonnaliser() {
                   key={index}
                   className="color-button"
                   style={{ backgroundColor: button.color }}
-                  onClick={() => changeColor(button.label)}
+                  onClick={() => {
+                    changeColor(button.label); // Première action
+                    setSelectedItems((prevState) => ({
+                      ...prevState,
+                      case: 1, // Mise à jour de consoleToBuy
+                    })); // Deuxième action
+                  }}
                 ></button>
               ))}
             </div>
@@ -284,7 +305,13 @@ function GBAPersonnaliser() {
                   key={index}
                   className="color-button"
                   style={{ backgroundColor: button.color }}
-                  onClick={() => changeDessous(button.label)}
+                  onClick={() => {
+                    changeDessous(button.label); // Première action
+                    setSelectedItems((prevState) => ({
+                      ...prevState,
+                      backCase: 1,
+                    }));
+                  }}
                 ></button>
               ))}
               <button className="custom-button">Sans</button>
@@ -300,7 +327,13 @@ function GBAPersonnaliser() {
                   key={index}
                   className="color-button"
                   style={{ backgroundColor: button.color }}
-                  onClick={() => changeEcran(button.label)}
+                  onClick={() => {
+                    changeEcran(button.label);
+                    setSelectedItems((prevState) => ({
+                      ...prevState,
+                      screen: 1,
+                    }));
+                  }}
                 ></button>
               ))}
             </div>
@@ -315,7 +348,14 @@ function GBAPersonnaliser() {
                   key={index}
                   className="color-button"
                   style={{ backgroundColor: button.color }}
-                  onClick={() => changeButton(button.label)}
+                  onClick={() => {
+                    changeButton(button.label);
+
+                    setSelectedItems((prevState) => ({
+                      ...prevState,
+                      buttons: 1,
+                    }));
+                  }}
                 ></button>
               ))}
             </div>
@@ -330,7 +370,13 @@ function GBAPersonnaliser() {
                   key={index}
                   className="color-button"
                   style={{ backgroundColor: button.color }}
-                  onClick={() => changePads(button.label)}
+                  onClick={() => {
+                    changePads(button.label);
+                    setSelectedItems((prevState) => ({
+                      ...prevState,
+                      pads: 1,
+                    }));
+                  }}
                 ></button>
               ))}
             </div>
@@ -345,7 +391,13 @@ function GBAPersonnaliser() {
                   key={index}
                   className="color-button"
                   style={{ backgroundColor: button.color }}
-                  onClick={() => changeStrap(button.label)}
+                  onClick={() => {
+                    changeStrap(button.label);
+                    setSelectedItems((prevState) => ({
+                      ...prevState,
+                      gurt: 1,
+                    }));
+                  }}
                 ></button>
               ))}
             </div>
@@ -357,13 +409,25 @@ function GBAPersonnaliser() {
             <div className="accordion-body">
               <button
                 id="button"
-                onClick={() => selectSpecialEdition("SNES Edition")}
+                onClick={() => {
+                  selectSpecialEdition("SNES Edition");
+                  setSelectedItems((prevState) => ({
+                    ...prevState,
+                    specialCase: 1,
+                  }));
+                }}
               >
                 SNES Edition (+16,50€)
               </button>
               <button
                 id="button"
-                onClick={() => selectSpecialEdition("Famicom Edition")}
+                onClick={() => {
+                  selectSpecialEdition("Famicom Edition");
+                  setSelectedItems((prevState) => ({
+                    ...prevState,
+                    specialCase: 1,
+                  }));
+                }}
               >
                 Famicom Edition (+16,50€)
               </button>
@@ -377,7 +441,16 @@ function GBAPersonnaliser() {
           <div className="accordion-item">
             <div className="accordion-header">Batterie</div>
             <div className="accordion-body">
-              <button id="button" onClick={() => selectBatterie("Batterie")}>
+              <button
+                id="button"
+                onClick={() => {
+                  selectBatterie("Batterie");
+                  setSelectedItems((prevState) => ({
+                    ...prevState,
+                    batteryInstall: true,
+                  }));
+                }}
+              >
                 Batterie 2000 mAh (+40€)
               </button>
               <button id="button" onClick={() => selectBatterie("Sans")}>
@@ -388,7 +461,16 @@ function GBAPersonnaliser() {
           <div className="accordion-item">
             <div className="accordion-header">Installation Led RGB</div>
             <div className="accordion-body">
-              <button id="button" onClick={() => selectLed("LED RGB")}>
+              <button
+                id="button"
+                onClick={() => {
+                  selectLed("LED RGB");
+                  setSelectedItems((prevState) => ({
+                    ...prevState,
+                    ledInstall: 1,
+                  }));
+                }}
+              >
                 Led RGB (+ 50€)
               </button>{" "}
               <button id="button" onClick={() => selectLed("Sans")}>
@@ -399,7 +481,16 @@ function GBAPersonnaliser() {
           <div className="accordion-item">
             <div className="accordion-header">Installation D-Pad Tactile</div>
             <div className="accordion-body">
-              <button id="button" onClick={() => selectDPAD("D-Pad")}>
+              <button
+                id="button"
+                onClick={() => {
+                  selectDPAD("D-Pad");
+                  setSelectedItems((prevState) => ({
+                    ...prevState,
+                    dpadInstall: true,
+                  }));
+                }}
+              >
                 D-Pad GBA-SP (+ 25€)
               </button>{" "}
               <button id="button" onClick={() => selectDPAD("Sans")}>
@@ -412,7 +503,13 @@ function GBAPersonnaliser() {
             <div className="accordion-body">
               <button
                 id="button"
-                onClick={() => selectAMP("Amplificateur Audio")}
+                onClick={() => {
+                  selectAMP("Amplificateur Audio");
+                  setSelectedItems((prevState) => ({
+                    ...prevState,
+                    ampAudio: true,
+                  }));
+                }}
               >
                 AMP Audio (+ 25€)
               </button>{" "}
@@ -433,7 +530,9 @@ function GBAPersonnaliser() {
                 Verre trempé (+4,90€)
               </button>
               <br />
-              <button id="button">Coque silicone (+6,90€)</button>
+              <button id="button" onClick={() => selectAcces("Coque ")}>
+                Coque silicone (+6,90€)
+              </button>
             </div>
           </div>
         </div>

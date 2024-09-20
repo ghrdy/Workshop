@@ -1,22 +1,41 @@
+/*navbar*/
+.navbar{
+    width: 1537px;
+    height: 80px;
+    background-color: rgb(70, 69, 69);
+    color: white;
+}
 .logo {
+    position: relative;
+    left: 60px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+    .logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.baseImage {
     position: absolute;
-    z-index: 1; /* Makes sure the logo is at the back */
+    z-index: 1;
     top: 30%;
     left: 10%;
 }
   
 .Overlay {
     position: absolute;
-    z-index: 2; /* This image will be on top of the logo */
-    opacity: 1; /* Optional: Set transparency for the overlay */
+    z-index: 2;
+    opacity: 1;
     top: 30%;
     left: 10%;
 }
 
 .divConfig{
-    width: 100%;
+    width: 40%;
     position: relative;
-    left: 140%;
+    margin-top: 2%;
+    left: 55%;
 }
 
 .accordion{
@@ -62,11 +81,11 @@ p{
 }
 
 .divPaiement{
-    width: 60%;
+    width: 25%;
     height: 20%;
     position: relative;
     margin-top: 3%;
-    left: 160%;
+    left: 62.5%;
     box-shadow: 5px 5px 10px rgb(235, 233, 233);
     border: 1px solid rgb(235, 233, 233);
     border-radius: 5px;

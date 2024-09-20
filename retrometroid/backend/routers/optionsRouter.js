@@ -1,61 +1,45 @@
-import { Router } from "express";
-import Option from "../models/Option.js"; // Import Option model
+import express from "express";
+import { getPricingConfig } from "../services/pricing.js"; // Assurez-vous que ce chemin est correct
 
-const router = Router();
-// Add a new option
-router.post("/addOption", async (req, res) => {
-    try {
-        
-        // Create a new Option instance with the request data
-        const newOption = new Option({
-            refersto: req.body.refersto,
-            name: req.body.name,
-            price: req.body.price,
-            color: req.body.color,
-            pictureUrl: req.body.pictureUrl,
-            createdAt: req.body.createdAt
-        });
+const router = express.Router();
 
-        // Vérifier si un produit avec les mêmes caractéristiques existe déjà
-        const existingOption = await Option.findOne({
-            refersto: req.body.refersto,
-            name: req.body.name,
-            color: req.body.color
-        });
-  
-        // Si un produit existe déjà avec ces caractéristiques, renvoyer un message d'erreur
-        if (existingOption) {
-            return res.status(409).json({ 
-            message: 'Une option avec les mêmes caractéristiques existe déjà.' 
-             });
-        }
+// Route pour ajouter des options/accessoires/variations
+router.post("/addOptions", async (req, res) => {
+  const { optionType, newOption } = req.body; // optionType: 'options', 'accessories', 'variations'
 
-        // Save the product to the database
-        await newOption.save().then(async (savedOption) => {
-        console.log('saved' + savedOption);
-        });
+  try {
+    const pricingConfigGBA = await getPricingConfig();
 
-    }   catch (error) {
-        console.log(error);
-        res.status(500).json({ msg: "Unable to create a new Option. Error: " + error.message });
+    // Ajouter la nouvelle option à la bonne section
+    if (optionType === "options") {
+      // Ajouter à pricingConfigGBA.options
+      pricingConfigGBA.options[newOption.name] = newOption; // Assurez-vous que newOption contient les bonnes propriétés
+    } else if (optionType === "accessories") {
+      // Ajouter à pricingConfigGBA.accessories
+      pricingConfigGBA.accessories[newOption.name] = newOption; // Assurez-vous que newOption contient les bonnes propriétés
+    } else if (optionType === "variations") {
+      // Ajouter à une section spécifique dans pricingConfigGBA
+      const { category, variation } = newOption; // Assurez-vous que newOption contient les bonnes propriétés
+      if (pricingConfigGBA.options[category]) {
+        pricingConfigGBA.options[category].variations.push(variation);
+      } else {
+        return res
+          .status(400)
+          .json({ msg: "Catégorie d'options non trouvée." });
+      }
+    } else {
+      return res.status(400).json({ msg: "Type d'option non valide." });
     }
+
+    // Sauvegarder les modifications
+    await pricingConfigGBA.save();
+    res
+      .status(200)
+      .json({ msg: "Options ajoutées avec succès.", pricingConfigGBA });
+  } catch (error) {
+    console.error("Erreur lors de l'ajout des options:", error);
+    res.status(500).json({ msg: "Erreur interne du serveur" });
+  }
 });
 
-router.get('/',async (req, res) => {
-    try {
-        // Récupérer toutes les options dans la base MongoDB
-        const options = await Option.find();
-
-        // Si aucune option trouvée
-        if (!options || options.length === 0) {
-          return res.status(404).json({ msg: 'Aucune option trouvée.' });
-        }
-    
-        // Retourner les options en format JSON
-        res.status(200).json(options);
-      } catch (error) {
-        console.error('Erreur lors de la récupération des options:', error);
-        res.status(500).json({ msg: 'Erreur serveur lors de la récupération des options.' });
-      }
-  });
 export default router;

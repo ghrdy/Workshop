@@ -30,7 +30,7 @@ const DatabaseButon = [
   },
   {
     image: ClearGreen,
-    couleur: "ClearGreen",
+    couleur: "Green",
   },
   {
     image: ClearPink,
@@ -74,6 +74,10 @@ export const dataButton = [
     color: "rgb(255, 0, 0)",
   },
   {
+    label: "ClearPink",
+    color: "rgb(135, 40, 190)",
+  },
+  {
     label: "Black",
     color: "rgb(0, 0, 0)",
   },
@@ -90,23 +94,12 @@ export const dataButton = [
     color: "rgb(0, 0, 255)",
   },
   {
-    label: "White",
-    color: "rgb(255, 255, 255)",
+    label: "Violet",
+    color: "rgb(236,130,236)",
   },
+
   {
-    label: "Orange",
-    color: "rgb(255, 165, 0)",
-  },
-  {
-    label: "Turquoise",
-    color: "rgb(175,238,238) ",
-  },
-  {
-    label: "Ghost",
-    color: "rgb(197,205,216)",
-  },
-  {
-    label: "Ghost",
+    label: "ClearGlass",
     color: "rgb(197,205,216)",
   },
 ];

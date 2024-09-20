@@ -81,16 +81,8 @@ export const dataPads = [
     color: "rgb(255, 165, 0)",
   },
   {
-    label: "Turquoise",
-    color: "rgb(175,238,238) ",
-  },
-  {
-    label: "Ghost",
-    color: "rgb(197,205,216)",
-  },
-  {
-    label: "Ghost",
-    color: "rgb(197,205,216)",
+    label: "DarkBlue",
+    color: "rgb(70, 60, 255)",
   },
 ];
 export default DatatabasePad;

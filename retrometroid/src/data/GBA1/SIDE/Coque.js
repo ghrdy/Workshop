@@ -25,8 +25,9 @@ const DatabaseCoque = [
   },
   {
     image: ClearBlue,
-    value: "Blue",
+    value: "ClearBlue",
   },
+
   {
     image: ClearGhost,
     value: "ClearGhost",
@@ -91,6 +92,10 @@ export const dataCoque = [
     color: "rgb(0, 0, 0)",
   },
   {
+    label: "ClearBlack",
+    color: "rgb(30, 30, 30)",
+  },
+  {
     label: "Rose",
     color: "rgb(128, 0, 128)",
   },
@@ -98,9 +103,10 @@ export const dataCoque = [
     label: "Green",
     color: "rgb(0, 128, 0)",
   },
+
   {
-    label: "Blue",
-    color: "rgb(0, 0, 255)",
+    label: "ClearBlue",
+    color: "rgb(40, 90, 255)",
   },
   {
     label: "White",
@@ -111,15 +117,16 @@ export const dataCoque = [
     color: "rgb(255, 165, 0)",
   },
   {
+    label: "SNES",
+    color: "rgb(200,200,200)",
+  },
+  {
     label: "Turquoise",
     color: "rgb(175,238,238) ",
   },
+
   {
-    label: "Ghost",
-    color: "rgb(197,205,216)",
-  },
-  {
-    label: "Ghost",
+    label: "ClearGhost",
     color: "rgb(197,205,216)",
   },
 ];

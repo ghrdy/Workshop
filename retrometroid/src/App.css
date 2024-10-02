@@ -1,133 +1,64 @@
-/* Styles pour la barre de navigation */
+/* Styles généraux */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /* Inclure les bordures et le padding dans la largeur */
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
   background-color: white;
 }
-/* Styles de base */
+
+/* --------- Navbar Styles --------- */
 .navbar {
   display: flex;
-  position: static;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
-  padding: 10px;
-}
-
-.logo {
+  background-color: #333;
+  padding: 10px 20px;
   color: white;
 }
 
-.menu {
-  display: flex;
-  gap: 15px;
-  background-color: white;
-}
-
-.menu a {
-  color: white;
-  text-decoration: none;
-}
-
-.user-cart {
-  display: flex;
-  gap: 15px;
-}
-
-.user-icon,
-.cart-icon {
-  color: white;
-  font-size: 20px;
-}
-
-.menu-button {
-  display: block;
-  background-color: blue;
-  border: none;
-  font-size: 30px;
-  color: black;
-}
-
-/* Responsive: petit écran */
-@media (max-width: 768px) {
-  .menu {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    background-color: #ffffff;
-    width: 200px;
-    padding: 10px;
-  }
-
-  .menu.open {
-    display: flex;
-  }
-
-  .menu-button {
-    display: block; /* Le bouton n'apparaît que pour les écrans < 768px */
-    display: block;
-    background-color: blue;
-    border: none;
-    font-size: 30px;
-    color: black;
-  }
-
-  .user-cart {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-}
-
-/* Logo section */
 .logo {
   font-size: 20px;
   font-weight: bold;
-  color: #333;
 }
 
 .logo .subtitle {
   font-size: 12px;
   font-style: italic;
-  color: red;
+  color: #ff0000;
   display: block;
 }
 
-/* Menu */
 .menu {
   display: flex;
   gap: 20px;
 }
 
 .menu a {
+  color: white;
   text-decoration: none;
-  color: #000;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 14px;
   text-transform: uppercase;
 }
 
 .menu a:hover {
-  color: red;
+  color: #ff0000;
 }
 
-/* User and Cart section */
 .user-cart {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-.user-icon {
-  font-size: 20px;
-}
-
+.user-icon,
 .cart-icon {
-  position: relative;
   font-size: 20px;
+  color: white;
 }
 
 .cart-count {
@@ -141,27 +72,143 @@
   font-size: 12px;
 }
 
-/* -------- Responsive CSS -------- */
+/* -------- Responsive Menu -------- */
+.menu-toggle {
+  display: none;
+}
 
-/* Pour les écrans de tablette (<= 768px) */
 @media (max-width: 768px) {
-  .navbar {
+  .menu {
+    display: none;
     flex-direction: column;
-    align-items: flex-start;
+    background-color: #333;
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 1;
+    padding: 10px 0;
   }
 
-  .menu {
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
+  .menu.open {
+    display: flex;
   }
 
   .menu a {
-    font-size: 14px;
+    font-size: 16px;
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .menu-toggle {
+    display: block;
+    background-color: #333;
+    color: white;
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+  }
+
+  .user-cart {
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
 }
 
-/* Pour les écrans de mobile (<= 480px) */
+/* -------- Layout Elements (e.g., sections, footer) -------- */
+.livraison {
+  text-align: center;
+  background-color: #ffefc2;
+  padding: 15px 0;
+  font-weight: bold;
+}
+
+.bandeau {
+  text-align: center;
+  background-color: #f7f7f7;
+  padding: 20px 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.bandeau span {
+  color: #ff0000;
+}
+
+.CadrePhoto {
+  text-align: center;
+  padding: 20px;
+}
+
+.caroussel {
+  padding: 20px 0;
+  background-color: #f0f0f0;
+}
+
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
+}
+
+.footer .footer-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.footer-left {
+  font-size: 12px;
+}
+
+.footer-icons a {
+  margin-right: 10px;
+}
+
+.footer-right a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.footer-right a:hover {
+  color: #ff0000;
+}
+
+/* -------- Responsive Footer -------- */
+@media (max-width: 768px) {
+  .footer .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-left,
+  .footer-right {
+    margin-top: 10px;
+  }
+}
+
+.scroll-up {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.scroll-up a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+.scroll-up a:hover {
+  color: #ff0000;
+}
+
+/* -------- Mobile (<= 480px) -------- */
 @media (max-width: 480px) {
   .navbar {
     padding: 10px;
@@ -171,31 +218,18 @@
     font-size: 18px;
   }
 
-  .menu {
-    display: none; /* Cacher le menu sur petits écrans */
+  .menu a {
+    font-size: 14px;
   }
 
-  /* Bouton pour afficher le menu */
-  .menu-toggle {
-    display: block;
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    cursor: pointer;
-  }
-
-  .menu.show {
-    display: flex;
+  .footer-content {
+    text-align: center;
     flex-direction: column;
-    gap: 10px;
-  }
-
-  .user-cart {
-    margin-top: 10px;
   }
 }
+
 .ecran {
   width: 100vw;
-  height: auto;
   background-color: red;
+  padding: 10px;
 }

@@ -2,11 +2,11 @@
 import Pricing from "../models/Pricing.js";
 
 const getPricingConfig = async () => {
-  // Vérifier si une configuration pour "GBA" existe déjà
-  let pricingConfigGBA = await Pricing.findOne({ refersto: "GBA" });
+  let pricingConfigGBA = await Pricing.findOne({ refersto: "GBA" }).populate(
+    "options.case options.screen options.buttons options.pads options.gurt options.specialCase options.stickers options.backCase options.ledTriggerInstall accessories"
+  );
 
   if (!pricingConfigGBA) {
-    // Si la configuration n'existe pas, la créer et la sauvegarder
     pricingConfigGBA = new Pricing({
       refersto: "GBA",
       options: {
@@ -134,7 +134,6 @@ const getPricingConfig = async () => {
 };
 
 const calculateFinalPrice = (customOptions, pricingConfig) => {
-  // Calculer le prix final à partir des options
   let finalPrice = 149; // Prix de base du produit
   const validAttributes = {};
   const invalidAttributes = [];
@@ -143,7 +142,6 @@ const calculateFinalPrice = (customOptions, pricingConfig) => {
     if (pricingConfig.options[option]) {
       const optionConfig = pricingConfig.options[option];
 
-      // Si aucune valeur n'est fournie, utiliser la valeur par défaut
       if (value === undefined || value === "") {
         if (optionConfig.default) {
           value = optionConfig.default.name;
@@ -151,7 +149,7 @@ const calculateFinalPrice = (customOptions, pricingConfig) => {
           console.log("pas de valeur: prix par défaut", accessory, finalPrice);
           validAttributes[option] = [value];
         } else {
-          continue; // Ignorer cette option
+          continue;
         }
       }
 
@@ -183,8 +181,7 @@ const calculateFinalPrice = (customOptions, pricingConfig) => {
         }
       }
     } else if (option === "accessories" && Array.isArray(value)) {
-      // Gestion spécifique des accessoires (tableaux)
-      const filteredAccessories = value.filter((accessory) => accessory !== ""); // Filtrer les accessoires vides
+      const filteredAccessories = value.filter((accessory) => accessory !== "");
 
       if (filteredAccessories.length > 0) {
         for (const accessory of filteredAccessories) {
@@ -203,9 +200,8 @@ const calculateFinalPrice = (customOptions, pricingConfig) => {
           }
         }
       } else {
-        // Si le tableau est vide, ne rien faire et ne pas modifier le prix
         console.log("Aucun accessoire fourni, prix inchangé.");
-        validAttributes[option] = []; // Accepter un tableau vide sans modification
+        validAttributes[option] = [];
       }
     } else {
       invalidAttributes.push({ option, value });
@@ -222,4 +218,8 @@ const calculateFinalPrice = (customOptions, pricingConfig) => {
   return { finalPrice, validAttributes, invalidAttributes };
 };
 
-export { getPricingConfig, calculateFinalPrice };
+const savePricingConfig = async (pricingConfig) => {
+  console.log("Enregistrement de la configuration de prix...");
+  return await pricingConfig.save();
+};
+export { getPricingConfig, calculateFinalPrice, savePricingConfig };

@@ -1,12 +1,17 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
 
-const OptionSchema = new Schema({
-  refersto: { type: String, required: true, default: "GBA" },
+const optionSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  price: { type: Number, default: 0, required: true },
+  price: { type: Number, required: true },
   color: { type: String, required: true },
   pictureUrl: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
+  optionId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Product",
+    required: true,
+  },
 });
 
-export default model("Option", OptionSchema);
+const Option = mongoose.model("Option", optionSchema);
+
+export default Option;

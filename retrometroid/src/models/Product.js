@@ -4,20 +4,24 @@ import { Schema, model } from "mongoose";
 
 const CustomOptionsSchema = new Schema({
   consoleToBuy: { type: Boolean, default: false, required: true },
-  case: { type: String, default: "green", required: true },
-  backCase: { type: String, default: "", required: false },
-  screen: { type: String, default: "black", required: true },
-  buttons: { type: String, default: "black", required: true },
-  pads: { type: String, default: "black", required: true },
-  gurt: { type: String, default: "black", required: true },
-  specialCase: { type: String, default: "", required: false },
-  stickers: { type: String, default: "holo-black", required: true },
+  case: { type: Schema.Types.ObjectId, ref: "Option", required: true },
+  backCase: { type: Schema.Types.ObjectId, ref: "Option", required: false },
+  screen: { type: Schema.Types.ObjectId, ref: "Option", required: true },
+  buttons: { type: Schema.Types.ObjectId, ref: "Option", required: true },
+  pads: { type: Schema.Types.ObjectId, ref: "Option", required: true },
+  gurt: { type: Schema.Types.ObjectId, ref: "Option", required: true },
+  specialCase: { type: Schema.Types.ObjectId, ref: "Option", required: false },
+  stickers: { type: Schema.Types.ObjectId, ref: "Option", required: true },
   batteryInstall: { type: Boolean, default: false, required: true },
   ledInstall: { type: Boolean, default: false, required: true },
-  ledTriggerInstall: { type: String, default: "", required: false },
+  ledTriggerInstall: {
+    type: Schema.Types.ObjectId,
+    ref: "Option",
+    required: false,
+  },
   dpadInstall: { type: Boolean, default: false, required: true },
   ampAudio: { type: Boolean, default: false, required: true },
-  accessories: [{ type: String, default: "", required: true }], // Tableau car on peut avoir plusieurs accessoires
+  accessories: [{ type: Schema.Types.ObjectId, ref: "Option", required: true }],
 });
 
 const ProductSchema = new Schema({

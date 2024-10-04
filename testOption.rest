@@ -1,11 +1,15 @@
 // TEST OPTION
 POST http://localhost:3000/api/options/addOption
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDAyNmZhZmEzMTkwOTEzMWIzZTZlNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyODA2NDA4OCwiZXhwIjoxNzI4MDY3Njg4fQ.wEJCXZdCSbzEqMxsdyBg9N9YNxiH8kqGiXk8sylZNH8
 
 {
-  "refersto" : "case",
-  "name" : "purple",
-  "price" : 1,
-  "color" : "#2929292",
-  "pictureUrl" : "ddd"
+  "optionType": "options",
+  "newOption": {
+    "name": "supercooloption",
+    "price": 1,
+    "color": "#2929292",
+    "pictureUrl": "ddd",
+    "optionId": "5f9f4b3b1f1b431f3c1b3b1b"
+  }
 }

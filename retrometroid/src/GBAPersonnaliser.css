@@ -1,21 +1,52 @@
-/*navbar*/
+/*Navbar*/
 .navbar{
     width: 1537px;
-    height: 80px;
-    background-color: rgb(70, 69, 69);
+    height: 60px;
+    background-color: rgb(210, 210, 210);
     color: white;
-}
-.logo {
-    position: relative;
-    left: 60px;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-}
-    .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
+    border: 1px solid rgb(205, 203, 203);
 }
 
+.imgLogo {
+    position: relative;
+    left: 150px;
+    width: 150px;
+    height: 25px;
+}
+
+.listePersonnalisation{
+    list-style-type: none;
+}
+
+.aPersonnalisation{
+    position: relative;
+    top: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.aPersonnalisation:hover{
+    font-weight: bold;
+    color: black;
+}
+
+.iconPersonnalisation{
+    position: relative;
+    text-decoration: none;
+    font-size: 19px;
+    left: -100px;
+    padding-left: 10px;
+}
+
+.menu-container{
+    background-color: rgb(249, 249, 249);
+}
+
+
+/*Images console*/
 .baseImage {
     position: absolute;
     z-index: 1;
@@ -31,11 +62,13 @@
     left: 10%;
 }
 
+/*Panneau de configuration*/
 .divConfig{
     width: 40%;
     position: relative;
     margin-top: 2%;
     left: 55%;
+    padding-top: 30px;
 }
 
 .accordion{
@@ -48,8 +81,8 @@
 
 .accordion-header{
     --bs-accordion-btn-bg: white;
-    --bs-accordion-active-bg: rgba(142, 141, 141, 0.67);
-    --bs-accordion-active-color: black;
+    --bs-accordion-active-bg: rgb(68, 67, 67);
+    --bs-accordion-active-color: white;
     --bs-accordion-btn-focus-box-shadow: none;
 }
 
@@ -72,6 +105,11 @@ p{
     border: 1px solid rgb(205, 203, 203);
 }
 
+.boutons:focus{
+    background-color: rgb(241, 239, 239);
+    border: 1px solid rgb(205, 203, 203);
+}
+
 #boutonCouleurs{
     border: 1px solid rgb(241, 239, 239);
 }
@@ -80,6 +118,7 @@ p{
     border: 1px solid black;
 }
 
+/*Panneau total paiement*/
 .divPaiement{
     width: 25%;
     height: 20%;
@@ -89,6 +128,7 @@ p{
     box-shadow: 5px 5px 10px rgb(235, 233, 233);
     border: 1px solid rgb(235, 233, 233);
     border-radius: 5px;
+    background-color: rgb(252, 252, 252);
 }
 
 #paiement{
@@ -105,4 +145,12 @@ p{
 #boutonPaiement:hover{
     background-color: rgb(102, 101, 101);
     color: white;
+}
+
+/*Footer*/
+.footer{
+    color: white;
+    background-color: black;
+    padding: 20px;
+    margin-top: 50px;
 }

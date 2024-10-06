@@ -183,43 +183,42 @@ function MenuCustom() {
   }
   function selectAcces(option) {
     let price = 0;
-    if (option === "Saccoche") {
+    if (option === "Sacoche") {
       price = 12.9;
-      updatePrice("Saccoche", price);
-    } else {
-      if (option === "Verre") {
-        price = 4.9;
-      }
+      updatePrice("Sacoche", price);
+    } else if (option === "Verre") {
+      price = 4.9;
       updatePrice("Verre", price);
+    } else if (option === "coqueSilicone"){
+      price = 6.9;
+      updatePrice("coqueSilicone", price);
     }
   }
 
   return (
     <div className="page">
-        <nav className="navbar">
-        
-            <div className="logo">
-                <span>RETROMETROID</span><br/>
-                <span className="subtitle">Customs Creation</span>
-            </div>
+      <nav className="navbar">
+        <div className="logo">
+          <a href="#">
+            <img className="imgLogo" src="../../../public/logo-RM-2024-1.png" alt="logo de Retrometroid"/>
+          </a>
+        </div>
 
         <div className="menu">
-            <a href="#">Personnalisation</a>
-            <a href="#">PSVita - OLED</a>
-            <a href="#">Éditions Limitées</a>
-            <a href="#">Accessoires</a>
-            <a href="#">Fonds d Écran</a>
+          <ul>
+            <li className="listePersonnalisation">
+              <a className="aPersonnalisation" href="#">
+                <span>PERSONNALISATION</span>
+              </a>
+            </li>
+          </ul>
         </div>
 
         <div className="user-cart">
-            <a href="#" className="user-icon">
-            👤
-            </a>
-            <a href="#" className="cart-icon">
-            🛒
-            </a>
-      </div>
-    </nav>
+          <a href="#" className="iconPersonnalisation">👤</a>
+          <a href="#" className="iconPersonnalisation">🛒</a>
+        </div>
+      </nav>
 
       <div className="menu-container">
         <img src={currentImage} className="baseImage" alt="Logo Retrometroid" width={650} height={417}/>
@@ -236,14 +235,19 @@ function MenuCustom() {
 
         <div className="divConfig">
           <h2 className="text-center fw-bold">CONFIGURATION</h2>
-          <br />
+          <br/>
           <Accordion defaultActiveKey="0">
             <Accordion.Item id="item" eventKey="0">
               <Accordion.Header id="textConfig">
                 <p>BASE CONSOLE (+ 40,00€)<br /> Création à partir d&apos;une console que vous fournissez</p>
               </Accordion.Header>
               <Accordion.Body>
-                <button onClick={() => {selectConsole("Fourni ")}} className="boutons" type="button">Je fournis la console</button>{" "}
+                <button
+                  onClick={() => {selectConsole("Fourni ")}}
+                  className="boutons"
+                  type="button"
+                  aria-pressed="true"
+                >Je fournis la console</button>{" "}
                 
                 <button 
                     onClick={() => {selectConsole("Fourni Pas"); setSelectedItems((prevState) => ({...prevState, consoleToBuy: true,}));}}
@@ -412,7 +416,7 @@ function MenuCustom() {
 
             <Accordion.Item eventKey="7">
               <Accordion.Header>
-                <p>COQUE SPECIAL EDITION (+ 16,90€)</p>
+                <p>COQUE SPECIAL EDITION (+ 16,50€)</p>
               </Accordion.Header>
               <Accordion.Body>
                 <button
@@ -604,15 +608,17 @@ function MenuCustom() {
                 <p>ACCESSOIRES (à partir de 4,90€)</p>
               </Accordion.Header>
               <Accordion.Body>
-                <button className="boutons" onClick={() => selectAcces("Saccoche")}>
-                  Saccoche Retrometroid (+12,90€)
+                <button className="boutons" onClick={() => selectAcces("Sacoche")}>
+                  Sacoche Retrometroid (+12,90€)
                 </button>
                 <br />
                 <button className="boutons" onClick={() => selectAcces("Verre")}>
                   Verre trempé (+4,90€)
                 </button>
                 <br />
-                <button className="boutons">Coque silicone (+6,90€)</button>
+                <button className="boutons" onClick={() => selectAcces("coqueSilicone")}>
+                  Coque silicone (+6,90€)
+                </button>
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
@@ -630,6 +636,48 @@ function MenuCustom() {
             </button>{" "}
         </div>
       </div>
+
+      <footer className="footer">
+        <p>TOUS DROITS RÉSERVÉS - RETROMETROID 2024</p>
+        {/*<div className="footer-content">
+          <div className="footer-left">
+            <p>TOUS DROITS RÉSERVÉS - RETROMETROID 2024</p>
+            <div className="footer-icons">
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src="path_to_instagram_icon" alt="Instagram" />
+              </a>
+              <a
+                href="https://www.tiktok.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src="path_to_tiktok_icon" alt="TikTok" />
+              </a>
+              <a href="mailto:someone@example.com">
+                <img src="path_to_email_icon" alt="Email" />
+              </a>
+            </div>
+          </div>
+          <div className="footer-right">
+            <a href="/mentions-legales">MENTIONS LÉGALES</a>
+            <a href="/conditions-generales-de-vente">
+              CONDITIONS GÉNÉRALES DE VENTE
+            </a>
+            <a href="/politique-de-confidentialite">
+              POLITIQUE DE CONFIDENTIALITÉ
+            </a>
+          </div>
+        </div>
+        <div className="scroll-up">
+          <a href="#top">
+            <span>&#8593;</span> 
+          </a>
+        </div>*/}
+      </footer>
     </div>
   );
 }

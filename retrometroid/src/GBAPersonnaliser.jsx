@@ -1,5 +1,7 @@
 import "./GBAPersonnaliser.css";
 
+import Product from "./models/Product.js";
+
 import DatabaseCoque, { dataCoque } from "./dataGBA/Side/Coque.js";
 import DatabaseDessous, { dataDessous } from "./dataGBA/Side/GBADessous.js";
 import DatabaseEcran, { dataEcran } from "./dataGBA/Side/Ecran.js";
@@ -40,8 +42,8 @@ const handleSubmit = async () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: productName,
-          customOptions: customOptions,
+          name: Product.productName,
+          customOptions: Product.customOptions,
         }),
       });
 
@@ -52,17 +54,16 @@ const handleSubmit = async () => {
       const data = await response.json();
       console.log("Réponse du serveur:", data);
 
-      // Si tu veux rediriger vers l'URL du produit ajouté au panier
-      if (data.product && data.product.finalPrice) {
+      /*if (data.product && data.product.finalPrice) {
         window.location.href = await sendProductToWooCommerce(data.product);
-      }
+      }*/
     } catch (error) {
       console.error("Erreur:", error);
     }
   };
 
 function MenuCustom() {
-  const [currentImage, setCurrentImage] = useState(DatabaseCoque[0].image); // Par défaut, on affiche la première image
+  const [currentImage, setCurrentImage] = useState(DatabaseCoque[0].image);
   const [currentImage1, setCurrentImage1] = useState(DatabaseDessous[0].image);
   const [currentImage2, setCurrentImage2] = useState(DatabaseEcran[0].image);
   const [currentButton, setCurrentButton] = useState(DatabaseButton[0].image);
@@ -85,6 +86,7 @@ function MenuCustom() {
     dpadInstall: false,
     ampAudio: false,
   });
+
   function changeDessous(e) {
     const filtred = DatabaseDessous.filter((item) => item.couleur === e);
     console.log(filtred);
@@ -113,6 +115,7 @@ function MenuCustom() {
     const filtred = DatatabasePad.filter((item) => item.couleur === e);
     if (filtred[0] !== undefined) setCurrentPad(filtred[0].image);
   }
+
   function changeStrap(e) {
     const filtred = DatabaseStrap.filter((item) => item.couleur === e);
     if (filtred[0] !== undefined) setCurrentStap(filtred[0].image);
@@ -128,6 +131,7 @@ function MenuCustom() {
 
     updatePrice("specialEdition", price);
   }
+
   function updatePrice(category, price) {
     setSelectedItems((prevItems) => {
       const newItems = { ...prevItems, [category]: price };
@@ -153,6 +157,7 @@ function MenuCustom() {
     }
     updatePrice("Fourni Pas", price);
   }
+
   function selectBatterie(option) {
     let price = 0;
     if (option === "Batterie") {
@@ -160,6 +165,7 @@ function MenuCustom() {
     }
     updatePrice("batterie", price);
   }
+
   function selectLed(option) {
     let price = 0;
     if (option === "LED RGB") {
@@ -167,6 +173,7 @@ function MenuCustom() {
     }
     updatePrice("ledRGB", price);
   }
+
   function selectDPAD(option) {
     let price = 0;
     if (option === "D-Pad") {
@@ -174,6 +181,7 @@ function MenuCustom() {
     }
     updatePrice("dPad", price);
   }
+
   function selectAMP(option) {
     let price = 0;
     if (option === "Amplificateur Audio") {
@@ -181,6 +189,7 @@ function MenuCustom() {
     }
     updatePrice("ampAudio", price);
   }
+
   function selectAcces(option) {
     let price = 0;
     if (option === "Sacoche") {
@@ -243,7 +252,7 @@ function MenuCustom() {
               </Accordion.Header>
               <Accordion.Body>
                 <button
-                  onClick={() => {selectConsole("Fourni ")}}
+                  onClick={() => {selectConsole("Fourni")}}
                   className="boutons"
                   type="button"
                   aria-pressed="true"
@@ -631,7 +640,7 @@ function MenuCustom() {
             <p id="paiement">Accompte versé (30%) : {(totalPrice*0.3).toFixed(2)} €</p>
             <p id="paiement">Livraison dans 35-40 jours</p>
             <br />
-            <button className="boutons" id="boutonPaiement" type="submit">
+            <button className="boutons" id="boutonPaiement" type="submit" onClick={handleSubmit}>
                 Ajouter au panier
             </button>{" "}
         </div>

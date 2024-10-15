@@ -1,0 +1,53 @@
+.gameboy-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  background-color: white;
+  box-shadow: 10px 14px 18px rgba(0, 0, 0, 0.3);
+  border-radius: 10px; /* Optionnel : arrondi des coins */
+  border: 2px solid black;
+}
+.card-content {
+  background-color: transparent;
+}
+.card-content h3 {
+  font-size: 16px;
+  color: #666;
+  background-color: transparent;
+}
+
+.card-content h1 {
+  font-size: 24px;
+  color: #333;
+  font-weight: bold;
+  background-color: transparent;
+}
+
+.button {
+  margin-top: 20px;
+  background-color: #25a0f3;
+  border-radius: 35px;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0088cc;
+}
+
+.card-image img {
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  background-color: transparent;
+}

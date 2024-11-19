@@ -1,0 +1,18 @@
+# Utilisez une image Node.js légère
+FROM node:lts-slim
+
+# Définir le répertoire de travail dans le conteneur
+WORKDIR /home/node/app
+
+# Copier les fichiers package.json et package-lock.json et installer les dépendances
+COPY package*.json ./
+RUN npm install
+
+# Copier tous les fichiers du projet dans le conteneur
+COPY . .
+
+# Exposer le port 5173 pour Vite
+EXPOSE 5173
+
+# Démarrer l'application en mode développement
+CMD ["npm", "run", "dev"]

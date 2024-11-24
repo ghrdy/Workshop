@@ -1,6 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
 import "./GBAPersonnaliser.css";
-import react from "react";
 import DatabaseCoque, { dataCoque } from "../dataGBA/Side/Coque.js";
 import DatabaseDessous, { dataDessous } from "../dataGBA/Side/GBADessous.js";
 import DatabaseEcran, { dataEcran } from "../dataGBA/Side/Ecran.js";
@@ -9,7 +8,6 @@ import DatabasePad, { dataPads } from "../dataGBA/Side/PAD.js";
 import DatabaseStrap, { dataStrap } from "../dataGBA/Side/Strap.js";
 import { useState } from "react";
 
-import Accordion from "react-bootstrap/Accordion";
 import Image from "react-bootstrap/Image";
 
 const handleAccessoryChange = (accessory) => {
@@ -309,7 +307,7 @@ const MenuCustom = () => {
 
             {/* Coque */}
             <div className="border border-gray-300 rounded mb-2">
-              <div
+              <button
                 onClick={() => setCoqueOpen(!coqueOpen)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
@@ -330,14 +328,14 @@ const MenuCustom = () => {
                 >
                   {coqueOpen ? "▲" : "▼"}
                 </span>
-              </div>
+              </button>
               {coqueOpen && (
                 <div className="p-4 bg-white border-t border-gray-300 rounded-b">
                   <div className="flex flex-wrap">
                     {dataCoque.map((button, index) => (
                       <button
                         id="boutonCouleurs"
-                        key={index}
+                        key={button.label}
                         className="color-button m-1"
                         style={{
                           backgroundColor: button.color,
@@ -362,7 +360,7 @@ const MenuCustom = () => {
 
             {/* Coque Arrière */}
             <div className="border border-gray-300 rounded mb-2">
-              <div
+              <button
                 onClick={() => setDessousOpen(!dessousOpen)}
                 className={`cursor-pointer p-4 rounded-t flex justify-between items-center transition-all duration-300 ${
                   dessousOpen ? "bg-blue-200 shadow-lg" : "bg-gray-200"
@@ -380,14 +378,14 @@ const MenuCustom = () => {
                 >
                   {dessousOpen ? "▲" : "▼"}
                 </span>
-              </div>
+              </button>
               {dessousOpen && (
                 <div className="p-4 bg-white border-t border-gray-300 rounded-b">
                   <div className="flex flex-wrap">
                     {dataDessous.map((button, index) => (
                       <button
                         id="boutonCouleurs"
-                        key={index}
+                        key={button.label}
                         className="color-button m-1"
                         style={{
                           backgroundColor: button.color,
@@ -409,7 +407,7 @@ const MenuCustom = () => {
               )}
             </div>
             <div className="border border-gray-300 rounded mb-2">
-              <div
+              <button
                 onClick={() => setEcranOpen(!ecranOpen)}
                 className={`cursor-pointer p-4 rounded-t flex justify-between items-center transition-all duration-300 ${
                   ecranOpen ? "bg-blue-200 shadow-lg" : "bg-gray-200"
@@ -425,14 +423,14 @@ const MenuCustom = () => {
                 >
                   {ecranOpen ? "▲" : "▼"}
                 </span>
-              </div>
+              </button>
               {ecranOpen && (
                 <div className="p-4 bg-white border-t border-gray-300 rounded-b">
                   <div className="flex flex-wrap">
                     {dataEcran.map((button, index) => (
                       <button
                         id="boutonCouleurs"
-                        key={index}
+                        key={button.label}
                         className="color-button m-1"
                         style={{
                           backgroundColor: button.color,
@@ -456,7 +454,7 @@ const MenuCustom = () => {
 
             {/* Boutons */}
             <div className="border border-gray-300 rounded mb-2">
-              <div
+              <button
                 onClick={() => setButtonOpen(!buttonOpen)}
                 className={`cursor-pointer p-4 rounded-t flex justify-between items-center transition-all duration-300 ${
                   buttonOpen ? "bg-blue-200 shadow-lg" : "bg-gray-200"
@@ -470,14 +468,14 @@ const MenuCustom = () => {
                 >
                   {buttonOpen ? "▲" : "▼"}
                 </span>
-              </div>
+              </button>
               {buttonOpen && (
                 <div className="p-4 bg-white border-t border-gray-300 rounded-b">
                   <div className="flex flex-wrap">
                     {dataButton.map((button, index) => (
                       <button
                         id="boutonCouleurs"
-                        key={index}
+                        key={button.label}
                         className="color-button m-1"
                         style={{
                           backgroundColor: button.color,
@@ -501,7 +499,7 @@ const MenuCustom = () => {
 
             {/* Pads */}
             <div className="border border-gray-300 rounded mb-2">
-              <div
+              <button
                 onClick={() => setPadsOpen(!padsOpen)}
                 className={`cursor-pointer p-4 rounded-t flex justify-between items-center transition-all duration-300 ${
                   padsOpen ? "bg-blue-200 shadow-lg" : "bg-gray-200"
@@ -515,14 +513,14 @@ const MenuCustom = () => {
                 >
                   {padsOpen ? "▲" : "▼"}
                 </span>
-              </div>
+              </button>
               {padsOpen && (
                 <div className="p-4 bg-white border-t border-gray-300 rounded-b">
                   <div className="flex flex-wrap">
                     {dataPads.map((button, index) => (
                       <button
                         id="boutonCouleurs"
-                        key={index}
+                        key={button.label}
                         className="color-button m-1"
                         style={{
                           backgroundColor: button.color,
@@ -540,7 +538,7 @@ const MenuCustom = () => {
 
             {/* Lanière */}
             <div className="border border-gray-300 rounded mb-2">
-              <div
+              <button
                 onClick={() => setStrapOpen(!strapOpen)}
                 className={`cursor-pointer p-4 rounded-t flex justify-between items-center transition-all duration-300 ${
                   strapOpen ? "bg-blue-200 shadow-lg" : "bg-gray-200"
@@ -554,14 +552,14 @@ const MenuCustom = () => {
                 >
                   {strapOpen ? "▲" : "▼"}
                 </span>
-              </div>
+              </button>
               {strapOpen && (
                 <div className="p-4 bg-white border-t border-gray-300 rounded-b">
                   <div className="flex flex-wrap">
                     {dataStrap.map((button, index) => (
                       <button
                         id="boutonCouleurs"
-                        key={index}
+                        key={button.label}
                         className="color-button m-1"
                         style={{
                           backgroundColor: button.color,
@@ -577,7 +575,7 @@ const MenuCustom = () => {
               )}
             </div>
             <div className="border border-gray-300 rounded mb-2">
-              <div
+              <button
                 onClick={() => setSpecialEditionOpen(!specialEditionOpen)}
                 className={`cursor-pointer p-4 rounded-t flex justify-between items-center transition-all duration-300 ${
                   specialEditionOpen ? "bg-blue-200 shadow-lg" : "bg-gray-200"
@@ -593,7 +591,7 @@ const MenuCustom = () => {
                 >
                   {specialEditionOpen ? "▲" : "▼"}
                 </span>
-              </div>
+              </button>
               {specialEditionOpen && (
                 <div className="p-4 bg-white border-t border-gray-300 rounded-b flex flex-col">
                   <button
@@ -620,7 +618,7 @@ const MenuCustom = () => {
 
             {/* Stickers */}
             <div className="border border-gray-300 rounded mb-2">
-              <div
+              <button
                 onClick={() => setStickersOpen(!stickersOpen)}
                 className={`cursor-pointer p-4 rounded-t flex justify-between items-center transition-all duration-300 ${
                   stickersOpen ? "bg-blue-200 shadow-lg" : "bg-gray-200"
@@ -636,7 +634,7 @@ const MenuCustom = () => {
                 >
                   {stickersOpen ? "▲" : "▼"}
                 </span>
-              </div>
+              </button>
               {stickersOpen && (
                 <div className="p-4 bg-white border-t border-gray-300 rounded-b flex flex-wrap">
                   <Image
@@ -669,7 +667,7 @@ const MenuCustom = () => {
 
             {/* Installation Batterie */}
             <div className="border border-gray-300 rounded mb-2">
-              <div
+              <button
                 onClick={() => setBatterieOpen(!batterieOpen)}
                 className={`cursor-pointer p-4 rounded-t flex justify-between items-center transition-all duration-300 ${
                   batterieOpen ? "bg-blue-200 shadow-lg" : "bg-gray-200"
@@ -685,7 +683,7 @@ const MenuCustom = () => {
                 >
                   {batterieOpen ? "▲" : "▼"}
                 </span>
-              </div>
+              </button>
               {batterieOpen && (
                 <div className="p-4 bg-white border-t border-gray-300 rounded-b flex flex-col">
                   <button
@@ -706,7 +704,7 @@ const MenuCustom = () => {
 
             {/* Installation LED RGB */}
             <div className="border border-gray-300 rounded mb-2">
-              <div
+              <button
                 onClick={() => setLedRgbOpen(!ledRgbOpen)}
                 className={`cursor-pointer p-4 rounded-t flex justify-between items-center transition-all duration-300 ${
                   ledRgbOpen ? "bg-blue-200 shadow-lg" : "bg-gray-200"
@@ -722,7 +720,7 @@ const MenuCustom = () => {
                 >
                   {ledRgbOpen ? "▲" : "▼"}
                 </span>
-              </div>
+              </button>
               {ledRgbOpen && (
                 <div className="p-4 bg-white border-t border-gray-300 rounded-b flex flex-col">
                   <button
@@ -740,7 +738,7 @@ const MenuCustom = () => {
 
             {/* Installation LED Trigger */}
             <div className="border border-gray-300 rounded mb-2">
-              <div
+              <button
                 onClick={() => setLedTriggerOpen(!ledTriggerOpen)}
                 className={`cursor-pointer p-4 rounded-t flex justify-between items-center transition-all duration-300 ${
                   ledTriggerOpen ? "bg-blue-200 shadow-lg" : "bg-gray-200"
@@ -756,7 +754,7 @@ const MenuCustom = () => {
                 >
                   {ledTriggerOpen ? "▲" : "▼"}
                 </span>
-              </div>
+              </button>
               {ledTriggerOpen && (
                 <div className="p-4 bg-white border-t border-gray-300 rounded-b flex flex-wrap">
                   <Image
@@ -815,7 +813,7 @@ const MenuCustom = () => {
             </div>
             <div className="border border-gray-300 rounded mb-2">
               {/* INSTALLATION D-PAD TACTILE */}
-              <div
+              <button
                 onClick={() => setDpadOpen(!dpadOpen)} // Utiliser un état pour gérer l'ouverture
                 className={`cursor-pointer p-4 rounded-t flex justify-between items-center transition-all duration-300 ${
                   dpadOpen ? "bg-blue-200 shadow-lg" : "bg-gray-200"
@@ -833,7 +831,7 @@ const MenuCustom = () => {
                 >
                   {dpadOpen ? "▲" : "▼"}
                 </span>
-              </div>
+              </button>
               {dpadOpen && (
                 <div className="p-4 bg-white border-t border-gray-300 rounded-b flex flex-col space-y-2">
                   <button
@@ -858,7 +856,7 @@ const MenuCustom = () => {
               )}
 
               {/* INSTALLATION AMP AUDIO */}
-              <div
+              <button
                 onClick={() => setAmpOpen(!ampOpen)} // Utiliser un état pour gérer l'ouverture
                 className={`cursor-pointer p-4 rounded-t flex justify-between items-center transition-all duration-300 ${
                   ampOpen ? "bg-blue-200 shadow-lg" : "bg-gray-200"
@@ -875,7 +873,7 @@ const MenuCustom = () => {
                 >
                   {ampOpen ? "▲" : "▼"}
                 </span>
-              </div>
+              </button>
               {ampOpen && (
                 <div className="p-4 bg-white border-t border-gray-300 rounded-b flex flex-col space-y-2">
                   <button
@@ -897,7 +895,7 @@ const MenuCustom = () => {
               )}
 
               {/* ACCESSOIRES */}
-              <div
+              <button
                 onClick={() => setAccesOpen(!accesOpen)} // Utiliser un état pour gérer l'ouverture
                 className={`cursor-pointer p-4 rounded-t flex justify-between items-center transition-all duration-300 ${
                   accesOpen ? "bg-blue-200 shadow-lg" : "bg-gray-200"
@@ -913,7 +911,7 @@ const MenuCustom = () => {
                 >
                   {accesOpen ? "▲" : "▼"}
                 </span>
-              </div>
+              </button>
               {accesOpen && (
                 <div className="p-4 bg-white border-t border-gray-300 rounded-b flex flex-col space-y-2">
                   <button

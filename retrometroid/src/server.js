@@ -2,7 +2,6 @@
 import express, { json } from "express";
 import apiRouter from "./routers/index.js";
 import { connect } from "mongoose";
-import path from "path";
 import main from "../src/main.jsx";
 //import SwaggerUI from "swagger-ui";
 //import "swagger-ui/dist/swagger-ui.css";
@@ -25,6 +24,7 @@ connect("mongodb://localhost:27017/Workshop")
   .catch((err) => console.error("MongoDB connection error:", err));
 
 const app = express();
+app.disable("x-powered-by");
 app.use(json()); // Middleware to parse JSON
 
 app.get("/", (req, res) => {

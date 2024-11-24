@@ -57,7 +57,7 @@ const handleSubmit = async () => {
     console.log("Réponse du serveur:", data);
 
     // Si tu veux rediriger vers l'URL du produit ajouté au panier
-    if (data.product && data.product.finalPrice) {
+    if (data.product?.finalPrice) {
       window.location.href = await sendProductToWooCommerce(data.product);
     }
   } catch (error) {
@@ -71,7 +71,7 @@ const MenuCustom = () => {
   const [currentImage2, setCurrentImage2] = useState(DatabaseEcran[0].image);
   const [currentButton, setCurrentButton] = useState(DatabaseButton[0].image);
   const [currentPad, setCurrentPad] = useState(DatabasePad[0].image);
-  const [currentStrap, setCurrentStap] = useState(DatabaseStrap[0].image);
+  const [currentStrap, setCurrentStrap] = useState(DatabaseStrap[0].image);
   const [totalPrice, setTotalPrice] = useState(149);
   const [isOpen, setIsOpen] = useState(false);
   const [dessousOpen, setDessousOpen] = useState(false);
@@ -136,14 +136,12 @@ const MenuCustom = () => {
   }
   function changeStrap(e) {
     const filtred = DatabaseStrap.filter((item) => item.couleur === e);
-    if (filtred[0] !== undefined) setCurrentStap(filtred[0].image);
+    if (filtred[0] !== undefined) setCurrentStrap(filtred[0].image);
   }
 
   function selectSpecialEdition(option) {
     let price = 0;
-    if (option === "SNES Edition") {
-      price = 16.5;
-    } else if (option === "Famicom Edition") {
+    if (option === "SNES Edition" || option === "Famicom Edition") {
       price = 16.5;
     }
 
@@ -169,8 +167,6 @@ const MenuCustom = () => {
     let price = 0;
     if (option === "Fourni Pas") {
       price = 40;
-    } else if (option === "Fourni") {
-      price = 0;
     }
     updatePrice("Fourni Pas", price);
   }
@@ -225,20 +221,20 @@ const MenuCustom = () => {
         </div>
 
         <div className="menu">
-          <a href="#">Personnalisation</a>
-          <a href="#">PSVita - OLED</a>
-          <a href="#">Éditions Limitées</a>
-          <a href="#">Accessoires</a>
-          <a href="#">Fonds d Écran</a>
+          <button className="link-button">Personnalisation</button>
+          <button className="link-button">PSVita - OLED</button>
+          <button className="link-button">Éditions Limitées</button>
+          <button className="link-button">Accessoires</button>
+          <button className="link-button">Fonds d Écran</button>
         </div>
 
         <div className="user-cart">
-          <a href="#" className="user-icon">
+          <button className="user-icon" aria-label="User">
             👤
-          </a>
-          <a href="#" className="cart-icon">
+          </button>
+          <button className="cart-icon" aria-label="Cart">
             🛒
-          </a>
+          </button>
         </div>
       </nav>
       <div className="menu-container">
@@ -249,22 +245,29 @@ const MenuCustom = () => {
           width={650}
           height={417}
         />
-        <img src={currentImage1} className="Overlay" width={650} height={417} />
-        <img src={currentImage2} className="Overlay" width={650} height={417} />
-        <img src={currentButton} className="Overlay" width={650} height={417} />
-        <img src={currentPad} className="Overlay" width={650} height={417} />
-        <img src={currentStrap} className="Overlay" width={650} height={417} />
+
+        <img src={currentImage1} className="Overlay" width={650} height={417} alt="" />
+        <img src={currentImage2} className="Overlay" width={650} height={417} alt="" />
+        <img src={currentButton} className="Overlay" width={650} height={417} alt="" />
+        <img src={currentPad} className="Overlay" width={650} height={417} alt="" />
+        <img src={currentStrap} className="Overlay" width={650} height={417} alt="" />
 
         <div className="divConfig  sm:p-6 lg:p-8">
           <div className="mx-auto p-4 sm:p-6 lg:p-8">
             <h2 className="text-center font-bold text-lg">CONFIGURATION</h2>
             <br />
             <div className="border border-gray-300 rounded mb-2">
-              <div
+              <button
                 onClick={() => setIsOpen(!isOpen)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    setIsOpen(!isOpen);
+                  }
+                }}
                 className={`cursor-pointer p-4 rounded-t flex justify-between items-center transition-all duration-300 ${
                   isOpen ? "bg-blue-200 shadow-lg" : "bg-gray-200"
                 }`}
+                aria-expanded={isOpen}
               >
                 <p className="text-sm md:text-base font-medium">
                   BASE CONSOLE (+ 40,00€)
@@ -277,7 +280,7 @@ const MenuCustom = () => {
                     {isOpen ? "▲" : "▼"}
                   </span>
                 </p>
-              </div>
+              </button>
               {isOpen && (
                 <div className="p-4 bg-white border-t border-gray-300 rounded-b">
                   <button
@@ -308,6 +311,11 @@ const MenuCustom = () => {
             <div className="border border-gray-300 rounded mb-2">
               <div
                 onClick={() => setCoqueOpen(!coqueOpen)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    setCoqueOpen(!coqueOpen);
+                  }
+                }}
                 className={`cursor-pointer p-4 rounded-t flex justify-between items-center transition-all duration-300 ${
                   coqueOpen ? "bg-blue-200 shadow-lg" : "bg-gray-200"
                 }`}

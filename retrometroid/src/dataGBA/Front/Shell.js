@@ -15,117 +15,41 @@ import Turquoise from "../../../public/GBA/Front/GBA-Front-GBC_LEDGBA_SHELL_TURQ
 import White from "../../../public/GBA/Front/GBA-Front-GBC_LEDGBA_SHELL_WHITE.jpg";
 import Yellow from "../../../public/GBA/Front/GBA-Front-GBC_LEDGBA_SHELL_YELLOW.jpg";
 
+function createShell(image, couleur) {
+  return { image, couleur };
+}
+
 const DatabaseShell = [
-  {
-    image: Black,
-    couleur: "Black",
-  },
-  {
-    image: Clear_Black,
-    couleur: "Clear_Black",
-  },
-  {
-    image: Blue,
-    couleur: "Blue",
-  },
-  {
-    image: Clear_GLass,
-    couleur: "Clear_GLass",
-  },
-  {
-    image: Green,
-    couleur: "Green",
-  },
-  {
-    image: Orange,
-    couleur: "Orange",
-  },
-  {
-    image: Red,
-    couleur: "Red",
-  },
-  {
-    image: Violet,
-    couleur: "Violet",
-  },
-  {
-    image: Famicon,
-    couleur: "Famicon",
-  },
-  {
-    image: Ghost,
-    couleur: "Ghost",
-  },
-  {
-    image: Grey,
-    couleur: "Grey",
-  },
-  {
-    image: Rose,
-    couleur: "Rose",
-  },
-  {
-    image: SNES,
-    couleur: "SNES",
-  },
-  {
-    image: Turquoise,
-    couleur: "Turquoise",
-  },
-  {
-    image: White,
-    couleur: "White",
-  },
-  {
-    image: Yellow,
-    couleur: "Yellow",
-  },
+  createShell(Black, "Black"),
+  createShell(Clear_Black, "Clear_Black"),
+  createShell(Blue, "Blue"),
+  createShell(Clear_GLass, "Clear_GLass"),
+  createShell(Green, "Green"),
+  createShell(Orange, "Orange"),
+  createShell(Red, "Red"),
+  createShell(Violet, "Violet"),
+  createShell(Famicon, "Famicon"),
+  createShell(Ghost, "Ghost"),
+  createShell(Grey, "Grey"),
+  createShell(Rose, "Rose"),
+  createShell(SNES, "SNES"),
+  createShell(Turquoise, "Turquoise"),
+  createShell(White, "White"),
+  createShell(Yellow, "Yellow"),
 ];
 
 export const dataShell = [
-  {
-    label: "Yellow",
-    color: "rgb(255, 255, 0)",
-  },
-  {
-    label: "Red",
-    color: "rgb(255, 0, 0)",
-  },
-  {
-    label: "Black",
-    color: "rgb(0, 0, 0)",
-  },
-  {
-    label: "Rose",
-    color: "rgb(128, 0, 128)",
-  },
-  {
-    label: "Green",
-    color: "rgb(0, 128, 0)",
-  },
-  {
-    label: "Blue",
-    color: "rgb(0, 0, 255)",
-  },
-  {
-    label: "White",
-    color: "rgb(255, 255, 255)",
-  },
-  {
-    label: "Orange",
-    color: "rgb(255, 165, 0)",
-  },
-  {
-    label: "Turquoise",
-    color: "rgb(175,238,238) ",
-  },
-  {
-    label: "Ghost",
-    color: "rgb(197,205,216)",
-  },
-  {
-    label: "Ghost",
-    color: "rgb(197,205,216)",
-  },
+  { label: "Yellow", color: "rgb(255, 255, 0)" },
+  { label: "Red", color: "rgb(255, 0, 0)" },
+  { label: "Black", color: "rgb(0, 0, 0)" },
+  { label: "Rose", color: "rgb(128, 0, 128)" },
+  { label: "Green", color: "rgb(0, 128, 0)" },
+  { label: "Blue", color: "rgb(0, 0, 255)" },
+  { label: "White", color: "rgb(255, 255, 255)" },
+  { label: "Orange", color: "rgb(255, 165, 0)" },
+  { label: "Turquoise", color: "rgb(175,238,238)" },
+  { label: "Ghost", color: "rgb(197,205,216)" },
+  { label: "Ghost", color: "rgb(197,205,216)" },
 ];
+
 export default DatabaseShell;

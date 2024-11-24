@@ -1,29 +1,16 @@
+function createIps(image, couleur) {
+  return { image, couleur };
+}
 const DatabaseIps = [
-    {
-      image: "./public/GBA/Front/GBA-Front-GBA_IPS_BLACK.png",
-      couleur: "Black",
-    },
-    {
-      image: "./public/GBA/Front/GBA-Front-GBA_IPS_DMG.png",
-      couleur: "DMG",
-    },
-  
-    {
-      image: "./public/GBA/Front/GBA-Front-GBA_IPS_SNES_JAP.png",
-      couleur: "SNES",
-    },
-    {
-      image: "./public/GBA/Front/GBA-Front-GBA_IPS_SNES_US.png",
-      couleur: "SNES_US",
-    },
-    {
-      image: "./public/GBA/Front/GBA-Front-GBA_IPS_SNES_US_Black.png",
-      couleur: "SNES_US_Black",
-    },
-    {
-      image: "./public/GBA/Front/GBA-Front-GBA_IPS_WHITE.png",
-      couleur: "White",
-    },
-  ];
-  
-  export default DatabaseIps;
+  createIps("./public/GBA/Front/GBA-Front-GBA_IPS_BLACK.png", "Black"),
+  createIps("./public/GBA/Front/GBA-Front-GBA_IPS_DMG.png", "DMG"),
+  createIps("./public/GBA/Front/GBA-Front-GBA_IPS_SNES_JAP.png", "SNES"),
+  createIps("./public/GBA/Front/GBA-Front-GBA_IPS_SNES_US.png", "SNES_US"),
+  createIps(
+    "./public/GBA/Front/GBA-Front-GBA_IPS_SNES_US_Black.png",
+    "SNES_US_Black"
+  ),
+  createIps("./public/GBA/Front/GBA-Front-GBA_IPS_WHITE.png", "White"),
+];
+
+export default DatabaseIps;

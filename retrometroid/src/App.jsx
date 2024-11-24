@@ -12,20 +12,20 @@ function Navbar() {
       </div>
 
       <div className="menu">
-        <a href="#">Personnalisation</a>
-        <a href="#">PSVita - OLED</a>
-        <a href="#">Éditions Limitées</a>
-        <a href="#">Accessoires</a>
-        <a href="#">Fonds d Écran</a>
+        <button className="link-button">Personnalisation</button>
+        <button className="link-button">PSVita - OLED</button>
+        <button className="link-button">Éditions Limitées</button>
+        <button className="link-button">Accessoires</button>
+        <button className="link-button">Fonds d Écran</button>
       </div>
 
       <div className="user-cart">
-        <a href="#" className="user-icon">
+        <button className="user-icon" aria-label="User Icon">
           👤
-        </a>
-        <a href="#" className="cart-icon">
+        </button>
+        <button className="cart-icon" aria-label="Cart Icon">
           🛒
-        </a>
+        </button>
       </div>
     </nav>
   );

@@ -68,7 +68,7 @@ function MenuCustom() {
   const [currentImage2, setCurrentImage2] = useState(DatabaseEcran[0].image);
   const [currentButton, setCurrentButton] = useState(DatabaseButton[0].image);
   const [currentPad, setCurrentPad] = useState(DatatabasePad[0].image);
-  const [currentStrap, setCurrentStap] = useState(DatabaseStrap[0].image);
+  const [currentStrap, setCurrentStrap] = useState(DatabaseStrap[0].image);
   const [totalPrice, setTotalPrice] = useState(149);
   const [selectedItems, setSelectedItems] = useState({
     consoleToBuy: false,
@@ -118,14 +118,12 @@ function MenuCustom() {
 
   function changeStrap(e) {
     const filtred = DatabaseStrap.filter((item) => item.couleur === e);
-    if (filtred[0] !== undefined) setCurrentStap(filtred[0].image);
+    if (filtred[0] !== undefined) setCurrentStrap(filtred[0].image);
   }
 
   function selectSpecialEdition(option) {
     let price = 0;
-    if (option === "SNES Edition") {
-      price = 16.5;
-    } else if (option === "Famicom Edition") {
+    if (option === "SNES Edition" || option === "Famicom Edition") {
       price = 16.5;
     }
 
@@ -152,8 +150,6 @@ function MenuCustom() {
     let price = 0;
     if (option === "Fourni Pas") {
       price = 40;
-    } else if (option === "Fourni") {
-      price = 0;
     }
     updatePrice("Fourni Pas", price);
   }
@@ -208,39 +204,39 @@ function MenuCustom() {
     <div className="page">
       <nav className="navbar">
         <div className="logo">
-          <a href="#">
+          <button className="link-button">
             <img className="imgLogo" src="../../../public/logo-RM-2024-1.png" alt="logo de Retrometroid"/>
-          </a>
+          </button>
         </div>
 
         <div className="menu">
           <ul>
             <li className="listePersonnalisation">
-              <a className="aPersonnalisation" href="#">
+              <button className="aPersonnalisation" type="button">
                 <span>PERSONNALISATION</span>
-              </a>
+              </button>
             </li>
           </ul>
         </div>
 
         <div className="user-cart">
-          <a href="#" className="iconPersonnalisation">👤</a>
-          <a href="#" className="iconPersonnalisation">🛒</a>
+          <button className="iconPersonnalisation" aria-label="User Profile">👤</button>
+          <button className="iconPersonnalisation" aria-label="Cart">🛒</button>
         </div>
       </nav>
 
       <div className="menu-container">
         <img src={currentImage} className="baseImage" alt="Logo Retrometroid" width={650} height={417}/>
 
-        <img src={currentImage1} className="Overlay" width={650} height={417} />
+        <img src={currentImage1} className="Overlay" width={650} height={417} alt="" />
 
-        <img src={currentImage2} className="Overlay" width={650} height={417} />
+        <img src={currentImage2} className="Overlay" width={650} height={417} alt="" />
 
-        <img src={currentButton} className="Overlay" width={650} height={417} />
+        <img src={currentButton} className="Overlay" width={650} height={417} alt="" />
 
-        <img src={currentPad} className="Overlay" width={650} height={417} />
+        <img src={currentPad} className="Overlay" width={650} height={417} alt="" />
 
-        <img src={currentStrap} className="Overlay" width={650} height={417} />
+        <img src={currentStrap} className="Overlay" width={650} height={417} alt="" />
 
         <div className="divConfig">
           <h2 className="text-center fw-bold">CONFIGURATION</h2>
@@ -274,7 +270,7 @@ function MenuCustom() {
                 {dataCoque.map((button, index) => (
                   <button
                     id="boutonCouleurs"
-                    key={index}
+                    key={button.label}
                     className="color-button"
                     style={{
                       backgroundColor: button.color,
@@ -303,7 +299,7 @@ function MenuCustom() {
                 {dataDessous.map((button, index) => (
                   <button
                     id="boutonCouleurs"
-                    key={index}
+                    key={button.label}
                     className="color-button"
                     style={{
                       backgroundColor: button.color,
@@ -331,7 +327,7 @@ function MenuCustom() {
                 {dataEcran.map((button, index) => (
                   <button
                     id="boutonCouleurs"
-                    key={index}
+                    key={button.label}
                     className="color-button"
                     style={{
                       backgroundColor: button.color,
@@ -359,7 +355,7 @@ function MenuCustom() {
                 {dataButton.map((button, index) => (
                   <button
                     id="boutonCouleurs"
-                    key={index}
+                    key={button.label}
                     className="color-button"
                     style={{
                       backgroundColor: button.color,
@@ -387,7 +383,7 @@ function MenuCustom() {
                 {dataPads.map((button, index) => (
                   <button
                     id="boutonCouleurs"
-                    key={index}
+                    key={button.label}
                     className="color-button"
                     style={{
                       backgroundColor: button.color,
@@ -409,7 +405,7 @@ function MenuCustom() {
                 {dataStrap.map((button, index) => (
                   <button
                     id="boutonCouleurs"
-                    key={index}
+                    key={button.label}
                     className="color-button"
                     style={{
                       backgroundColor: button.color,

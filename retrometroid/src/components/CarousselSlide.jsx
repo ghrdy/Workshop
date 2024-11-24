@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./style/Caroussel.css"; // Make sure to include your CSS
 import telechargementImage from "../assets/HOME_NDSL-02.png";
 import telechargementImage1 from "../assets/HOME-SCREEN-Desktop-CLEAN-02.png";

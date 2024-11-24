@@ -16,62 +16,36 @@ const images = [
   },
 ];
 
+// Helper function to determine the class name
+const getSlideClassName = (isActive, isPrevious, isNext) => {
+  if (isActive) return "active";
+  if (isPrevious) return "previous";
+  if (isNext) return "next";
+  return "";
+};
+
 const ImageSlider = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const goToPrevious = () => {
-    setActiveIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
-  const goToNext = () => {
-    setActiveIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
+  const isActive = (index) => index === activeIndex;
+  const isPrevious = (index) => index === activeIndex - 1;
+  const isNext = (index) => index === activeIndex + 1;
 
   return (
-    <div className="slider-container">
-      <button className="prev" onClick={goToPrevious}>
-        ‹
-      </button>
-      <div className="slider">
-        {images.map((image, index) => {
-          const isActive = index === activeIndex;
-          const isPrevious =
-            index === (activeIndex === 0 ? images.length - 1 : activeIndex - 1);
-          const isNext =
-            index === (activeIndex === images.length - 1 ? 0 : activeIndex + 1);
-
-          return (
-            <div
-              key={index}
-              className={`slide ${
-                isActive
-                  ? "active"
-                  : isPrevious
-                  ? "previous"
-                  : isNext
-                  ? "next"
-                  : ""
-              }`}
-              style={{ backgroundImage: `url(${image.imgSrc})` }}
-            >
-              {isActive && (
-                <div className="slide-content">
-                  <h2>{image.title}</h2>
-                  <h3>{image.subtitle}</h3>
-                  <button>Découvrir</button>
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-      <button className="next" onClick={goToNext}>
-        ›
-      </button>
+    <div className="image-slider">
+      {images.map((image, index) => (
+        <div
+          key={image.id}
+          className={`slide ${getSlideClassName(isActive(index), isPrevious(index), isNext(index))}`}
+        >
+          <img src={image.imgSrc} alt={image.title} />
+          <div className="slide-info">
+            <h2>{image.title}</h2>
+            <p>{image.subtitle}</p>
+          </div>
+        </div>
+      ))}
+      <button onClick={() => setActiveIndex((prevIndex) => (prevIndex + 1) % images.length)}>Next</button>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import GameboyList from "../components/GameBoyList";
 import CarousselSlide from "../components/CarousselSlide";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import GBApersonnaliser from "./GBApersonnaliser"; // Page Personnalisation
+import PropTypes from 'prop-types';
 
 // Composants de ta page
 function Navbar() {
@@ -108,6 +109,8 @@ function Footer() {
 }
 
 // Layout pour les pages avec Navbar et Footer
+
+
 function Layout({ children }) {
   return (
     <>
@@ -117,6 +120,10 @@ function Layout({ children }) {
     </>
   );
 }
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 // Fonction App principale
 function App() {

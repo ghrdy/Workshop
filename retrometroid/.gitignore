@@ -23,3 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# SonarCloud
+.scannerwork/
+
+# Coverage reports
+coverage/

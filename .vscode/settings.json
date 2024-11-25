@@ -1,0 +1,6 @@
+{
+    "sonarlint.connectedMode.project": {
+        "connectionId": "ghrdy",
+        "projectKey": "ghrdy_Workshop"
+    }
+}

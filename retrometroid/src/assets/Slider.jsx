@@ -1,4 +1,3 @@
-import React from "react";
 import leftChevron from "../assets/left-arrow.svg";
 import rightChevron from "../assets/right-arrow.svg";
 import "./Slider.css";
@@ -20,7 +19,7 @@ export default function Slider() {
     setSliderIndex(newState);
   }
   useEffect(() => {
-    const intervalID = setInterval(() => toogleImage(1), 2000);
+    setInterval(() => toogleImage(1), 2000);
   }, []);
   return (
     <>
@@ -44,14 +43,14 @@ export default function Slider() {
           className="navigation-butto-prev-button"
         >
           {" "}
-          <img src={leftChevron} alt="previous image"></img>
+          <img src={leftChevron} alt="previous"></img>
         </button>
         <button
           onClick={() => toogleImage(-1)}
           className="navigation-butto-prev-button"
         >
           {" "}
-          <img src={rightChevron} alt="next image"></img>
+          <img src={rightChevron} alt="next"></img>
         </button>
       </div>
     </>

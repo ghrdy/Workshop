@@ -34,7 +34,7 @@ const GameboyList = () => {
     <div className="gameboy-list">
       {gameboyData.map((gameboy, index) => (
         <GameboyCard
-          key={index}
+          key={gameboy.id}
           title={gameboy.title}
           subtitle={gameboy.subtitle}
           imageUrl={gameboy.imageUrl}

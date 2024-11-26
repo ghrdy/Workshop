@@ -2,7 +2,7 @@
 
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import GameBoyCard from "./GameBoyCard";
+import GameBoyCard from "../components/GameBoyCard";
 
 describe("GameBoyCard Component", () => {
   const props = {

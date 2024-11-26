@@ -2,7 +2,7 @@ import request from "supertest";
 import App from "../App";
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import User from "retrometroid/backend/models/User"; // Assurez-vous que le modèle User est correctement importé
+import Admin from "../models/Admin"; // Assurez-vous que le modèle User est correctement importé
 
 import { createRoot } from "react-dom/client";
 
@@ -63,7 +63,7 @@ describe("Auth", () => {
 
   test("POST /login - authentication", async () => {
     // Créez d'abord un utilisateur pour tester la connexion
-    await User.create({ email: "at@gmail.com", password: "test123" });
+    await Admin.create({ email: "at@gmail.com", password: "test123" });
 
     const response = await request(App)
       .post("/login")

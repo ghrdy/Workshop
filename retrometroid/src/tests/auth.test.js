@@ -1,8 +1,12 @@
 import request from "supertest";
-import App from "retrometroid/src/App.jsx";
-import db from "retrometroid/backend";
+import App from "../App";
+import mongoose from "mongoose";
+import { MongoMemoryServer } from "mongodb-memory-server";
+import User from "retrometroid/backend/models/User"; // Assurez-vous que le modèle User est correctement importé
 
 import { createRoot } from "react-dom/client";
+
+let mongoServer;
 
 beforeEach(() => {
   const root = document.createElement("div");
@@ -18,21 +22,23 @@ afterEach(() => {
 });
 
 test("renders without crashing", () => {
-  // À ce point, l'élément #root existe dans le DOM virtuel
   createRoot(document.getElementById("root")).render(<App />);
-
   // Ajoutez vos assertions pour tester l'application ici
 });
 
 beforeAll(async () => {
-  await db.query(
-    "CREATE TABLE IF NOT EXISTS admin (email VARCHAR(100), password VARCHAR(100));"
-  );
+  mongoServer = await MongoMemoryServer.create();
+  const uri = mongoServer.getUri();
+  await mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 });
 
 afterAll(async () => {
-  await db.query("DROP TABLE admin;");
-  db.query("END");
+  await mongoose.connection.dropDatabase();
+  await mongoose.connection.close();
+  await mongoServer.stop();
 });
 
 describe("Auth", () => {
@@ -43,7 +49,7 @@ describe("Auth", () => {
 
     expect(response.statusCode).toBe(201);
     expect(response.body.email).toBe("at@gmail.com");
-    expect(response.body.password).toBe("test123");
+    expect(response.body.passwcord).toBeUndefined(); // Assurez-vous que le mot de passe n'est pas renvoyé
   });
 
   test("POST /register - error registration", async () => {
@@ -51,18 +57,20 @@ describe("Auth", () => {
       .post("/register")
       .send({ email: "at@gmail.com", password: "" });
 
-    expect(response.statusCode).toBe(500);
-    expect(response.body.email).toBe("at@gmail.com");
-    expect(response.body.password).toBe("");
+    expect(response.statusCode).toBe(400); // Assurez-vous que le code de statut est correct pour une erreur
+    expect(response.body.message).toBeDefined(); // Vérifiez que le message d'erreur est renvoyé
   });
 
   test("POST /login - authentication", async () => {
+    // Créez d'abord un utilisateur pour tester la connexion
+    await User.create({ email: "at@gmail.com", password: "test123" });
+
     const response = await request(App)
       .post("/login")
       .send({ email: "at@gmail.com", password: "test123" });
 
-    expect(response.statusCode).toBe(201);
+    expect(response.statusCode).toBe(200);
     expect(response.body.email).toBe("at@gmail.com");
-    expect(response.body.password).toBe("test123");
+    expect(response.body.password).toBeUndefined(); // Assurez-vous que le mot de passe n'est pas renvoyé
   });
 });

@@ -1,0 +1,3 @@
+// TEST SECURE ROUTE
+GET http://localhost:3000/api/options/list
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDAyNmZhZmEzMTkwOTEzMWIzZTZlNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyODA2MzgzNSwiZXhwIjoxNzI4MDY3NDM1fQ.oHrlrSVz5TR7ESUfgOiyVCxv6w4gRy-1VliTXDr5mmE

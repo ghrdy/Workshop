@@ -1,0 +1,188 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  width: 100%;
+}
+
+#root {
+  width: 100%;
+}
+
+/* -------- Navbar Styles -------- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  gap: 1rem; /* Ajout pour gérer l'espacement */
+}
+
+/* Logo Section */
+.logo {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+.logo .subtitle {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: #ff0000;
+}
+.livraison {
+  text-align: center;
+  background-color: #ffefc2;
+  padding: 15px 0;
+  font-weight: bold;
+}
+
+.bandeau {
+  text-align: center;
+  background-color: #f7f7f7;
+  padding: 20px 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.bandeau span {
+  color: #ff0000;
+}
+
+.CadrePhoto,
+.caroussel {
+  flex-grow: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* -------- Footer Styles -------- */
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
+}
+
+.footer .footer-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.footer-left {
+  font-size: 12px;
+}
+
+.footer-icons a {
+  margin-right: 10px;
+}
+
+.footer-right a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.footer-right a:hover {
+  color: #ff0000;
+}
+
+.scroll-up {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.scroll-up a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+.scroll-up a:hover {
+  color: #ff0000;
+}
+
+/* Menu Section */
+.menu {
+  display: flex;
+  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+  gap: 1rem;
+  flex: 1; /* Permet à la section de s'étendre */
+  justify-content: center; /* Aligne les items au centre */
+}
+
+.link-button {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+/* User Cart Section */
+.user-cart {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0; /* Empêche la réduction de la section */
+}
+
+.user-icon,
+.cart-icon {
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* -------- Responsive Styles -------- */
+@media (max-width: 768px) {
+  .menu {
+    justify-content: flex-start; /* Change l'alignement sur les petits écrans */
+    gap: 0.5rem;
+  }
+
+  .link-button {
+    font-size: 0.9rem; /* Réduit la taille des boutons */
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu {
+    flex-wrap: wrap; /* Permet au menu de s'adapter sur plusieurs lignes */
+    justify-content: center;
+  }
+
+  .link-button {
+    font-size: 0.8rem;
+  }
+
+  .logo {
+    font-size: 1rem;
+  }
+}

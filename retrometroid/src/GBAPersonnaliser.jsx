@@ -37,7 +37,7 @@ const handleOptionChange = (option) => {
 
 const handleSubmit = async () => {
   try {
-    const response = await fetch("http://localhost:5000/addProduct", {
+    const response = await fetch("http://localhost:5001/addProduct", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

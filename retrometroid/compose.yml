@@ -1,15 +1,17 @@
 services:
-  web:
+  back:
     build:
       context: .
       dockerfile: ./DockerFile
-    container_name: app
+    container_name: back
     ports:
-      - "3000:3000"
+      - "5001:5001"
     networks:
       - app-network
     volumes:
       - ./src:/home/node/app/src # Montage du code source local
+    depends_on:
+      - mongo
 
   mongo:
     image: mongo:latest

@@ -1,9 +1,20 @@
 services:
+  front:
+    build:
+      context: ./src/Docker/front
+      dockerfile: DockerFile
+    container_name: front
+    ports:
+      - "5173:5173"
+    networks:
+      - app-network
+    volumes:
+      - ./src:/home/node/app/src # Montage du code source local
 
   back:
     build:
-      context: .
-      dockerfile: ./DockerFile
+      context: ./src/Docker/back
+      dockerfile: DockerFile
     container_name: back
     ports:
       - "5001:5001"
@@ -29,4 +40,3 @@ networks:
 
 volumes:
   mongo-data:
-

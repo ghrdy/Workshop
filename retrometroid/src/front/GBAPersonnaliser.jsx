@@ -7,6 +7,7 @@ import DatabaseButton, { dataButton } from "../dataGBA/Side/Button.js";
 import DatabasePad, { dataPads } from "../dataGBA/Side/PAD.js";
 import DatabaseStrap, { dataStrap } from "../dataGBA/Side/Strap.js";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Accordion from "react-bootstrap/Accordion";
 import Image from "react-bootstrap/Image";
@@ -63,6 +64,7 @@ const handleSubmit = async () => {
     console.error("Erreur:", error);
   }
 };
+
 
 const MenuCustom = () => {
   const [currentImage, setCurrentImage] = useState(DatabaseCoque[0].image); // Par défaut, on affiche la première image
@@ -213,33 +215,49 @@ const MenuCustom = () => {
       updatePrice("Verre", price);
     }
   }
+   const navigate = useNavigate();
+  
+    const handleNavigation = (path) => {
+      navigate(path);
+    };
 
   return (
     <div className="page ">
       <nav className="navbar">
-        <div className="logo">
-          <span>RETROMETROID</span>
-          <br />
-          <span className="subtitle">Customs Creation</span>
-        </div>
+      <button> {"X"}</button>
+      <div className="logo">
+        <span>RETROMETROID</span>
+        <span className="subtitle">Customs Creation</span>
+      </div>
 
-        <div className="menu">
-          <a href="#">Personnalisation</a>
-          <a href="#">PSVita - OLED</a>
-          <a href="#">Éditions Limitées</a>
-          <a href="#">Accessoires</a>
-          <a href="#">Fonds d Écran</a>
-        </div>
+      <div className="menu">
+        <button
+          className="link-button"
+          onClick={() => handleNavigation("/")}
+        >
+          Home
+        </button>
+        <button
+          className="link-button"
+          onClick={() => handleNavigation("/gba-personnaliser")}
+        >
+          Personnalisation
+        </button>
+        <button className="link-button">PSVita - OLED</button>
+        <button className="link-button">Éditions Limitées</button>
+        <button className="link-button">Accessoires</button>
+        <button className="link-button">Fonds d Écran</button>
+      </div>
 
-        <div className="user-cart">
-          <a href="#" className="user-icon">
-            👤
-          </a>
-          <a href="#" className="cart-icon">
-            🛒
-          </a>
-        </div>
-      </nav>
+      <div className="user-cart">
+        <button className="user-icon" aria-label="User Icon">
+          👤
+        </button>
+        <button className="cart-icon" aria-label="Cart Icon">
+          🛒
+        </button>
+      </div>
+    </nav>
       <div className="menu-container">
         <img
           src={currentImage}
@@ -924,19 +942,21 @@ const MenuCustom = () => {
               )}
             </div>
 
-            <div className="divPaiement h-width-[400px]">
-              <h2 id="paiement">{totalPrice} €</h2>
-              <p id="paiement" className="fw-light">
-                Prix total
+            <div className="w-full md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto bg-white rounded-lg shadow-md p-6 mt-8">
+              <h2 className="text-2xl font-bold text-center mb-4">{totalPrice.toFixed(2)} €</h2>
+              <p className="text-gray-600 text-center mb-2">Prix total</p>
+              <p className="text-sm text-gray-700 mb-2 text-center">
+                Acompte versé (30%) : {(totalPrice * 0.3).toFixed(2)} €
               </p>
-              <p id="paiement">
-                Accompte versé (30%) : {(totalPrice * 0.3).toFixed(2)} €
-              </p>
-              <p id="paiement">Livraison dans 35-40 jours</p>
-              <br />
-              <button className="boutons" id="boutonPaiement" type="submit">
-                Ajouter au panier
-              </button>
+              <p className="text-sm text-gray-700 mb-4 text-center">Livraison dans 35-40 jours</p>
+              <div className="flex justify-center  text-center">
+                <button 
+                  className="bg-blue-500 hover:bg-blue-600 text-white text-center font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+                  type="submit"
+                >
+                  Ajouter au panier
+                </button>
+              </div>
             </div>
           </div>
         </div>

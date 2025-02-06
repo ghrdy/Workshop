@@ -139,9 +139,7 @@ body {
   cursor: pointer;
 }
 
-.link-button:hover {
-  color: #ff0000;
-}
+
 
 /* User Cart Section */
 .user-cart {

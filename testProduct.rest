@@ -1,0 +1,42 @@
+//ADD USERS
+POST http://localhost:5001/api/products/addProduct
+Content-Type: application/json
+
+{
+  "productId" : 1,
+  "name" : "GBA-Tim",
+  "customOptions" : {
+    "consoleToBuy": true,
+    "case": "black",
+    "backCase": "black",
+    "screen": "black",
+    "buttons": "black",
+    "pads": "black",
+    "gurt": "black",
+    "specialCase": "",
+    "stickers": "",
+    "batteryInstall": false,
+    "ledInstall": false,
+    "ledTriggerInstall": "",
+    "dpadInstall": false,
+    "ampAudio": false,
+    "accessories": ["RetroMetroidBag"]
+  }
+}
+
+
+// accessories : ok
+// ampAudio : ok
+// dpadInstall : ok
+// ledTriggerIntsall : ok
+// ledInstall : ok
+// batteryInstall : ok
+// stickers: ok
+// specialCase: ok
+// gurt : no price
+// pads : no price
+// buttons : no price
+// screen : no price
+// backCase : ok
+// case : no price
+// consoleToBuy : ok

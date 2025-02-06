@@ -1,12 +1,32 @@
 services:
-  front:
+
+  back:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./DockerFile
+    container_name: back
     ports:
-      - "5173:5173"
+      - "5001:5001"
+    networks:
+      - app-network
     volumes:
-      - .:/home/node/app
-      - /home/node/app/node_modules
-    environment:
-      - NODE_ENV=development
+      - ./src:/home/node/app/src # Montage du code source local
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+    volumes:
+      - mongo-data:/data/db
+
+networks:
+  app-network:
+
+volumes:
+  mongo-data:
+

@@ -1,0 +1,20 @@
+# Utiliser une image Node.js officielle comme image de base
+FROM node:18
+
+# Définir le répertoire de travail dans le conteneur
+WORKDIR /home/node
+
+# Copier package.json et package-lock.json dans le répertoire de travail
+COPY package*.json ./
+
+# Installer les dépendances du projet
+RUN npm install
+
+# Copier tout le reste des fichiers de l'application dans le répertoire de travail
+COPY . .
+
+# Exposer le port sur lequel l'application va tourner (debug)
+EXPOSE 5001
+
+# Commande pour lancer l'application
+CMD ["npm", "start"]

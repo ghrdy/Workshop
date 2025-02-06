@@ -1,6 +1,7 @@
 // jest.config.js
 export default {
   transform: {
+
     "^.+\\.jsx?$": "babel-jest",
     //"\\.[jt]sx?$": "babel-jest",
     //"^.+\\.js$": "babel-jest", // Utilise babel-jest pour transpiler le code
@@ -18,4 +19,5 @@ export default {
   collectCoverage: true, // Active la génération de la couverture
   coverageDirectory: "coverage", // Répertoire pour les rapports de couverture
   coverageReporters: ["json", "text", "lcov"], // Formats de sortie (lcov est nécessaire pour SonarCloud)
+
 };

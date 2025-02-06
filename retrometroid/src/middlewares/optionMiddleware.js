@@ -1,6 +1,7 @@
 import { getPricingConfig, savePricingConfig } from "../services/pricing.js";
 import Option from "../models/Option.js";
 
+
 const handleError = (res, error, message) => {
   console.error(message, error);
   res.status(500).json({ msg: "Erreur interne du serveur" });
@@ -96,22 +97,28 @@ const savePricingConfigGBA = async (pricingConfigGBA) => {
   console.log("pricing config saved");
 };
 
+
 export const fetchPricingConfig = async (req, res, next) => {
   try {
     const pricingConfigGBA = await getPricingConfig();
     req.pricingConfigGBA = pricingConfigGBA;
     next();
   } catch (error) {
+
+    
     handleError(
       res,
       error,
       "Erreur lors de la récupération de la configuration des prix:"
     );
+
+    
   }
 };
 
 export const addOption = async (req, res, next) => {
   const { optionType, newOption } = req.body;
+
 
   try {
     const option = createOption(newOption);
@@ -126,6 +133,7 @@ export const addOption = async (req, res, next) => {
     next();
   } catch (error) {
     handleError(res, error, "Erreur lors de l'ajout de l'option:");
+
   }
 };
 

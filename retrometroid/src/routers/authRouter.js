@@ -7,7 +7,10 @@ import { hashPassword } from "../services/hash.js";
 const router = express.Router();
 
 router.post("/login", async (req, res) => {
+
+  
   const { email, password } = req.body.toString();
+
 
   try {
     const admin = await Admin.findOne({ email });
@@ -37,7 +40,9 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
+
   const { email, password } = req.body.toString();
+
 
   try {
     const hashedPassword = await hashPassword(password);

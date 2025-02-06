@@ -1,0 +1,8 @@
+// TEST ADMIN
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "tim.hrdy@gmail.com",
+  "password": "securepassword123"
+}

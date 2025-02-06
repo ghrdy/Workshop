@@ -1,0 +1,257 @@
+/*Navbar*/
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  gap: 1rem; /* Ajout pour gérer l'espacement */
+}
+
+.link-button {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.link-button:hover {
+  color: #ff0000;
+}
+
+/* User Cart Section */
+.user-cart {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0; /* Empêche la réduction de la section */
+}
+
+.user-icon,
+.cart-icon {
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+/* Logo Section */
+.logo {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+.logo .subtitle {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: #ff0000;
+}
+
+.imgLogo {
+  position: relative;
+  left: 150px;
+  width: 150px;
+  height: 25px;
+}
+
+.listePersonnalisation {
+  list-style-type: none;
+}
+.menu-container img {
+  position: fixed;
+  /* Nécessaire pour le positionnement absolu des images */
+}
+
+.aPersonnalisation {
+  position: relative;
+  top: 5px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.aPersonnalisation:hover {
+  font-weight: bold;
+  color: black;
+}
+
+.iconPersonnalisation {
+  position: relative;
+  text-decoration: none;
+  font-size: 19px;
+  left: -100px;
+  padding-left: 10px;
+}
+
+.menu-container {
+  background-color: rgb(249, 249, 249);
+}
+
+/*Images console*/
+.baseImage {
+  position: absolute;
+  z-index: 1;
+  top: 30%;
+  left: 10%;
+}
+
+.Overlay {
+  position: absolute;
+  z-index: 2;
+  opacity: 1;
+  top: 30%;
+  left: 10%;
+}
+
+/*Panneau de configuration*/
+.divConfig {
+  width: 40%;
+  position: relative;
+  margin-top: 2%;
+  left: 55%;
+  padding-top: 30px;
+}
+
+.accordion {
+  position: relative;
+  margin-left: 15%;
+  margin-right: 15%;
+  box-shadow: 5px 5px 10px rgb(235, 233, 233);
+  font-size: 10px;
+}
+
+.accordion-header {
+  --bs-accordion-btn-bg: white;
+  --bs-accordion-active-bg: rgb(68, 67, 67);
+  --bs-accordion-active-color: white;
+  --bs-accordion-btn-focus-box-shadow: none;
+}
+
+p {
+  font-size: 15px;
+}
+
+.boutons {
+  background-color: white;
+  color: black;
+  font-size: 15px;
+  border-radius: 30px;
+  border: 1px solid rgb(205, 203, 203);
+  margin-bottom: 2px;
+  height: 43px;
+}
+
+.boutons:hover {
+  background-color: rgb(241, 239, 239);
+  border: 1px solid rgb(205, 203, 203);
+}
+
+.boutons:focus {
+  background-color: rgb(241, 239, 239);
+  border: 1px solid rgb(205, 203, 203);
+}
+
+#boutonCouleurs {
+  border: 1px solid rgb(241, 239, 239);
+}
+
+#boutonCouleurs:hover {
+  border: 1px solid black;
+}
+
+/*Panneau total paiement*/
+.divPaiement {
+  width: 25%;
+  height: 20%;
+  position: relative;
+  margin-top: 3%;
+  left: 62.5%;
+  box-shadow: 5px 5px 10px rgb(235, 233, 233);
+  border: 1px solid rgb(235, 233, 233);
+  border-radius: 5px;
+  background-color: rgb(252, 252, 252);
+}
+
+#paiement {
+  margin-left: 10%;
+  margin-top: 5%;
+}
+
+#boutonPaiement {
+  background-color: rgb(241, 239, 239);
+  margin-left: 30%;
+  margin-bottom: 5%;
+}
+
+#boutonPaiement:hover {
+  background-color: rgb(102, 101, 101);
+  color: white;
+}
+.menu-container img {
+  position: fixed;
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media (max-width: 1400px) {
+  body {
+    width: auto;
+  }
+  .page {
+    width: 100%;
+  }
+  .menu-container {
+    width: 100%;
+    display: flex;
+  }
+  .menu-container img {
+    position: fixed;
+    display: flex;
+    justify-content: flex-start;
+    width: 300px;
+  }
+  .divConfig {
+    width: 40px;
+  }
+}
+@media (max-width: 1324px) {
+  .divConfig {
+    width: 40%;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-container img {
+    position: absolute;
+    width: 190px;
+    position: fixed;
+  }
+  .divConfig {
+    width: 40%;
+  }
+}
+
+/*Footer*/
+.footer {
+  color: white;
+  background-color: black;
+  padding: 20px;
+  margin-top: 50px;
+}

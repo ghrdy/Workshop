@@ -220,11 +220,11 @@ const MenuCustom = () => {
     const handleNavigation = (path) => {
       navigate(path);
     };
+    
 
   return (
     <div className="page ">
       <nav className="navbar">
-      <button> {"X"}</button>
       <div className="logo">
         <span>RETROMETROID</span>
         <span className="subtitle">Customs Creation</span>
@@ -272,15 +272,15 @@ const MenuCustom = () => {
         <img src={currentPad} className="Overlay" width={650} height={417} />
         <img src={currentStrap} className="Overlay" width={650} height={417} />
 
-        <div className="divConfig  sm:p-6 lg:p-8">
-          <div className="mx-auto p-4 sm:p-6 lg:p-8">
-            <h2 className="text-center font-bold text-lg">CONFIGURATION</h2>
+        <div className="divConfig  sm:p-6 lg:p-8 ">
+          <div className="mx-auto p-4 sm:p-6 lg:p-8 ">
+            <h2 className="text-center font-bold text-">CONFIGURATION</h2>
             <br />
             <div className="border border-gray-300 rounded mb-2">
               <div
                 onClick={() => setIsOpen(!isOpen)}
                 className={`cursor-pointer p-4 rounded-t flex justify-between items-center transition-all duration-300 ${
-                  isOpen ? "bg-blue-200 shadow-lg" : "bg-gray-200"
+                  isOpen ? " shadow-lg" : "bg-gray-200"
                 }`}
               >
                 <p className="text-sm md:text-base font-medium">
@@ -299,7 +299,7 @@ const MenuCustom = () => {
                 <div className="p-4 bg-white border-t border-gray-300 rounded-b">
                   <button
                     onClick={() => selectConsole("Fourni")}
-                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition w-full mb-2"
+                    className="yo text-white px-4 py-2 rounded  transition w-full mb-2"
                     type="button"
                   >
                     Je fournis la console
@@ -312,7 +312,7 @@ const MenuCustom = () => {
                         consoleToBuy: true,
                       }));
                     }}
-                    className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition w-full"
+                    className="yo bg-red-500 text-white px-4 py-2 rounded  text-black transition w-full"
                     type="button"
                   >
                     Je n ai pas de console à fournir (+40€)
@@ -322,7 +322,7 @@ const MenuCustom = () => {
             </div>
 
             {/* Coque */}
-            <div className="border border-gray-300 rounded mb-2">
+            <div className="border border-red-300 rounded mb-2">
               <div
                 onClick={() => setCoqueOpen(!coqueOpen)}
                 className={`cursor-pointer p-4 rounded-t flex justify-between items-center transition-all duration-300 ${
@@ -341,7 +341,7 @@ const MenuCustom = () => {
                 </span>
               </div>
               {coqueOpen && (
-                <div className="p-4 bg-white border-t border-gray-300 rounded-b">
+                <div className="p-4 bg-red border-t border-gray-300 rounded-b">
                   <div className="flex flex-wrap">
                     {dataCoque.map((button, index) => (
                       <button
@@ -635,7 +635,7 @@ const MenuCustom = () => {
                   stickersOpen ? "bg-blue-200 shadow-lg" : "bg-gray-200"
                 }`}
               >
-                <p className="text-sm md:text-base font-medium">
+                <p className=" text text-sm md:text-base font-medium">
                   STICKERS* (+ 20,00€)
                 </p>
                 <span
@@ -650,7 +650,7 @@ const MenuCustom = () => {
                 <div className="p-4 bg-white border-t border-gray-300 rounded-b flex flex-wrap">
                   <Image
                     title="HOLO NOIR"
-                    className="m-1"
+                    className=" text m-1"
                     width="20"
                     height="20"
                     src="./public/couleursStickers/NOIR.png"
@@ -658,7 +658,7 @@ const MenuCustom = () => {
                   />
                   <Image
                     title="HOLO BLANC"
-                    className="m-1"
+                    className=" textm-1"
                     width="20"
                     height="20"
                     src="./public/couleursStickers/BLANC.png"
@@ -666,7 +666,7 @@ const MenuCustom = () => {
                   />
                   <Image
                     title="STICKERS PERSONNALISES + 20,00€"
-                    className="m-1"
+                    className="text m-1"
                     width="20"
                     height="20"
                     src="./public/couleursStickers/PERSONNALISE.png"
@@ -684,7 +684,7 @@ const MenuCustom = () => {
                   batterieOpen ? "bg-blue-200 shadow-lg" : "bg-gray-200"
                 }`}
               >
-                <p className="text-sm md:text-base font-medium">
+                <p className="text text-sm md:text-base font-medium">
                   INSTALLATION BATTERIE (+ 40,00€)
                 </p>
                 <span
@@ -698,7 +698,7 @@ const MenuCustom = () => {
               {batterieOpen && (
                 <div className="p-4 bg-white border-t border-gray-300 rounded-b flex flex-col">
                   <button
-                    className="boutons mb-2"
+                    className="text boutons mb-2"
                     onClick={() => selectBatterie("Batterie")}
                   >
                     Batterie 2000 mAh (+40€)
@@ -951,7 +951,7 @@ const MenuCustom = () => {
               <p className="text-sm text-gray-700 mb-4 text-center">Livraison dans 35-40 jours</p>
               <div className="flex justify-center  text-center">
                 <button 
-                  className="bg-blue-500 hover:bg-blue-600 text-white text-center font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+                  className=" yo text-white text-center font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
                   type="submit"
                 >
                   Ajouter au panier

@@ -116,6 +116,9 @@ body {
   top: 30%;
   left: 10%;
 }
+.yo{
+  background-color: black;
+}
 
 /*Panneau de configuration*/
 .divConfig {
@@ -124,6 +127,7 @@ body {
   margin-top: 2%;
   left: 55%;
   padding-top: 30px;
+  
 }
 
 .accordion {
@@ -146,22 +150,30 @@ p {
 }
 
 .boutons {
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
   font-size: 15px;
-  border-radius: 30px;
+  margin: 10px;
   border: 1px solid rgb(205, 203, 203);
-  margin-bottom: 2px;
+  margin-bottom: 2px; 
   height: 43px;
+  border-radius: 5px;
+  width: auto;
 }
+.boutons.active {
+  border: 2px solid rgb(201, 19, 19); 
+  outline: none; 
+}
+
+
 
 .boutons:hover {
-  background-color: rgb(241, 239, 239);
+  background-color: rgb(93, 150, 236);
   border: 1px solid rgb(205, 203, 203);
 }
 
-.boutons:focus {
-  background-color: rgb(241, 239, 239);
+.boutons:focus { 
+  background-color: rgb(93, 150, 236);
   border: 1px solid rgb(205, 203, 203);
 }
 
@@ -189,6 +201,9 @@ p {
 #paiement {
   margin-left: 10%;
   margin-top: 5%;
+}
+.yo{
+  color:black
 }
 
 #boutonPaiement {

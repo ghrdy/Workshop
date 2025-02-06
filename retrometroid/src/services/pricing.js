@@ -138,7 +138,9 @@ const calculateFinalPrice = (customOptions, pricingConfig) => {
   const validAttributes = {};
   const invalidAttributes = [];
 
+
   for (const [option, value] of Object.entries(customOptions)) {
+
     if (pricingConfig.options[option]) {
       const optionConfig = pricingConfig.options[option];
 

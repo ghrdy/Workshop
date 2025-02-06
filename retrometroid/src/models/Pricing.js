@@ -27,7 +27,9 @@ const PricingConfigSchema = new Schema({
     ledTriggerInstall: OptionSchema, // Utilisation du schéma Option
     ampAudio: { price: { type: Number, default: 25 } },
     dpadInstall: { price: { type: Number, default: 25 } },
+
     stickers: { perso: { price: { type: Number, default: 12.9 } } },
+
   },
   accessories: {
     RetroMetroidBag: { price: { type: Number, default: 12.9 } },

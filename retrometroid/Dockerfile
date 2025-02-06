@@ -1,13 +1,13 @@
 # Utilisez une image Node.js légère
 FROM node:lts-slim
-USER node
 
 # Définir le répertoire de travail dans le conteneur
 WORKDIR /home/node/app
 
 # Copier les fichiers package.json et package-lock.json et installer les dépendances
 COPY package*.json ./
-RUN npm install --ignore-scripts
+RUN npm install 
+
 
 # Copier tous les fichiers du projet dans le conteneur
 COPY . .

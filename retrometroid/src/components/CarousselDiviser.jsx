@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
 import { useState } from "react";
-import "./style/Caroussel.css"; // Make sure to include your CSS
 import telechargementImage from "../assets/img1.png";
 import telechargementImage1 from "../assets/img2.png";
 
@@ -35,26 +33,32 @@ export function CarousselDiviser() {
   };
 
   return (
-    <div className="slider">
-      <button className="left-arrow" onClick={prevSlide}>
+    <div className="flex justify-center items-center h-screen">
+      <button
+        className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
+        onClick={prevSlide}
+      >
         {"<"}
       </button>
 
-      <div className="slider-content">
-        <div className="slider-image-container">
+      <div className="flex flex-col items-center justify-center w-1/2 h-1/2">
+        <div className="w-full h-full">
           <img
             src={slides[currentIndex].image}
             alt="slider-img"
-            className="slider-image"
+            className="object-cover w-full h-full"
           />
         </div>
-        <div className="slider-text">
-          <h2>{slides[currentIndex].title}</h2>
-          <p>{slides[currentIndex].description}</p>
+        <div className="text-center mt-4">
+          <h2 className="text-2xl">{slides[currentIndex].title}</h2>
+          <p className="text-lg">{slides[currentIndex].description}</p>
         </div>
       </div>
 
-      <button className="right-arrow" onClick={nextSlide}>
+      <button
+        className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r"
+        onClick={nextSlide}
+      >
         {">"}
       </button>
     </div>

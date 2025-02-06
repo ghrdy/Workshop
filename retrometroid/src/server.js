@@ -19,7 +19,7 @@ ui.initOAuth({
   clientId: "implicit",
 }); */
 // Connect to MongoDB
-connect("mongodb://localhost:27017/Workshop")
+connect("mongodb://mongo:27017/Workshop")
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 

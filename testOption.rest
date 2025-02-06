@@ -1,7 +1,7 @@
 // TEST OPTION
 POST http://localhost:3000/api/options/addOption
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDAyNmZhZmEzMTkwOTEzMWIzZTZlNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyODA2NDA4OCwiZXhwIjoxNzI4MDY3Njg4fQ.wEJCXZdCSbzEqMxsdyBg9N9YNxiH8kqGiXk8sylZNH8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YTUyYWFiODMwMmQzNTcwNTU0M2NhMSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczODg3Nzc3OSwiZXhwIjoxNzM4ODgxMzc5fQ.5p4e4g7WBxflavZ68mjPFqlHFsoLga5DbuyXS44Op-0
 
 {
   "optionType": "options",
